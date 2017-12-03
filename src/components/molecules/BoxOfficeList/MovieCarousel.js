@@ -20,7 +20,7 @@ class BoxOfficeCarousel extends Component {
       const { getCarouselList } = this;
 
       return (
-          <Carousel centerMode emulateTouch showStatus={false} showThumbs={false} showIndicators={false} showArrows={false} autoPlay interval={3000} infiniteLoop>
+          <Carousel centerMode emulateTouch centerSlidePercentage={35} showStatus={false} showThumbs={false} showIndicators={false} autoPlay interval={3000} infiniteLoop>
               {getCarouselList(boxOfficeList)}
           </Carousel>
       );

@@ -5,7 +5,6 @@ import MovieInfo from '../../templates/MovieInfo';
 import * as utils from '../../../lib/utils';
 
 import { Carousel } from 'react-responsive-carousel';
-import '../../../css/carousel.css';
 
 const SimilarMovieList = ({similarMovies, handleOpen}) => {
     const movieList = similarMovies.map((movie, i) => {
@@ -42,7 +41,7 @@ const SimilarMovieList = ({similarMovies, handleOpen}) => {
             />
         );
     });
-    
+
     return(
       <Segment>
         <Header>비슷한 영화 추천</Header>

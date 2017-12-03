@@ -30,7 +30,7 @@ const PrintCateMovieList = ({ cateMovieList, handleOpen }) => {
 
   return (
     <div>
-      <Card.Group>
+      <Card.Group itemsPerRow={4}>
           {movieList}
       </Card.Group>
     </div>

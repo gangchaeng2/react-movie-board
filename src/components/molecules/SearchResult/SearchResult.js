@@ -23,7 +23,6 @@ const PrintMovieList = ({ movieList, handleOpen }) => {
                     title_url,
                     filmrate,
                     poster,
-                    nation,
                     main_genre,
                     year,
                     d_day,

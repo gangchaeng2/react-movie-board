@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as modalMovieActions from '../modules/modalMovie';
 
 import MovieDetail from '../components/molecules/MovieDetail/MovieDetail';
-import * as utils from '../lib/utils';
 
 class ModalContainer extends Component {
     // 모달 열기
