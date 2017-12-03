@@ -1,0 +1,3 @@
+.carousel img {display:inline-block;pointer-events:none}
+.carousel .slide img {max-height:400px;vertical-align:top;border:0}
+.carousel.carousel-slider{margin-top:5px;}
