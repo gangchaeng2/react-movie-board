@@ -81,7 +81,7 @@ const PrintBoxOfficeDetail = ({boxOfficeList, handleOpen}) => {
     });
 
     return (
-          <Grid.Column width={12}>
+          <Grid.Column width={13}>
             <Segment>
               <Item.Group divided>
                   {detailMovieList}

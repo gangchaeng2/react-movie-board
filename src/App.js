@@ -13,7 +13,7 @@ import HeaderContainer from './containers/HeaderContainer';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    width: 125rem;
+    width: 105rem;
     margin: 0 auto;
     margin-top: 20px;
 `;
