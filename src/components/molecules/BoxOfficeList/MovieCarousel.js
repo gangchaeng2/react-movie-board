@@ -21,7 +21,7 @@ const getCarouselList = (list, handleOpen) => {
 
 const BoxOfficeCarousel = ({boxOfficeList, handleOpen}) => {
     return(
-      <Carousel centerMode centerSlidePercentage={40} showStatus={false} showThumbs={false} showIndicators={false} autoPlay interval={5000} infiniteLoop>
+      <Carousel centerMode centerSlidePercentage={34} showStatus={false} showThumbs={false} showIndicators={false} autoPlay interval={5000} infiniteLoop>
           {getCarouselList(boxOfficeList, handleOpen)}
       </Carousel>
     );

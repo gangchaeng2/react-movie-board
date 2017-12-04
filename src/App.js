@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Helmet } from 'react-helmet';
 import StickyHeader from 'react-sticky-header';
 
@@ -10,6 +11,10 @@ import ModalContainer from './containers/ModalContainer';
 import BoxOfficeContainer from './containers/BoxOfficeContainer';
 import CategoryContainer from './containers/CategoryContainer';
 import HeaderContainer from './containers/HeaderContainer';
+
+import * as modalMovieActions from './modules/modalMovie';
+
+import MovieCarousel from './components/molecules/BoxOfficeList/MovieCarousel';
 
 import 'react-sticky-header/styles.css';
 
@@ -22,9 +27,24 @@ const Wrapper = styled.div`
 }
 `;
 
+const CarouselDiv = styled.div`
+    margin-top: 7rem;
+}
+`;
+
 class App extends Component {
+    // Open Modal
+    handleOpen = async (title, code) => {
+        const { modalMovieActions } = this.props;
+
+        await modalMovieActions.searchMovieTmp(title).
+        then(function(res) {
+            modalMovieActions.getSimilarMovieList(code);
+        });
+    }
+
     render() {
-        const { view } = this.props;
+        const { view, boxOfficeList, handleOpen } = this.props;
 
         return (
             <div>
@@ -38,6 +58,15 @@ class App extends Component {
               <Helmet>
                   <title>BigShine - MovieProject</title>
               </Helmet>
+
+              <CarouselDiv>
+                <Container visible={view === 'box office'}>
+                  <MovieCarousel
+                      boxOfficeList={boxOfficeList}
+                      handleOpen={this.handleOpen}
+                  />
+                </Container>
+              </CarouselDiv>
 
               <Wrapper>
                   <Container visible={view === 'search'}>
@@ -58,6 +87,10 @@ class App extends Component {
 
 export default connect(
     (state) => ({
-        view: state.viewSelector.get('view')
+        view: state.viewSelector.get('view'),
+        boxOfficeList: state.boxOffice.boxOfficeList
+    }),
+    (dispatch) => ({
+        modalMovieActions: bindActionCreators(modalMovieActions, dispatch)
     })
 )(App);

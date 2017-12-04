@@ -6,7 +6,7 @@ const SET_VIEW = 'SET_VIEW';
 export const setView = createAction(SET_VIEW);
 
 const initialState = Map({
-    view: 'box office'
+    view: 'search'
 });
 
 export default handleActions({

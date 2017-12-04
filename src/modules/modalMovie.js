@@ -24,14 +24,16 @@ export const getSimilarMovieList = createAction(GET_SIMILAR_MOVIE, getSimilarMov
 const initialState = Map({
     open: false,
     item: {},
-    similarMovieList: []
+    similarMovieList: [],
+    loadingStatus: false
 });
 
 export default handleActions({
     [SHOW]: (state, action) => {
         const { item } = action.payload;
         return state.set('open', true)
-                    .set('item', item);
+                    .set('item', item)
+                    .set('loadingStatus', true);
     },
     [HIDE]: (state, action) => state.set('open', false),
     ...pender({
@@ -39,8 +41,8 @@ export default handleActions({
         onSuccess: (state, action) => {
             const item = action.payload.data.cards[0].items[0].item;
             return state.set('open', true)
-                        .set('item', item);
-
+                        .set('item', item)
+                        .set('loadingStatus', true);
         }
     }),
     ...pender({
@@ -49,8 +51,8 @@ export default handleActions({
             const similarMovieList = action.payload.data.data;
             return state.set('open', true)
                         .set('item', state.toJS().item)
+                        .set('loadingStatus', false)
                         .set('similarMovieList', similarMovieList);
-
         }
     })
 }, initialState);

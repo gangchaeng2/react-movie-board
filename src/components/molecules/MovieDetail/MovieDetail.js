@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Icon, Header, Image, Embed, Segment, Grid, Item, Card, Rating, Button } from 'semantic-ui-react';
+import { Modal, Icon, Header, Image, Segment, Grid, Item, Card, Rating, Button } from 'semantic-ui-react';
 import { Carousel } from 'react-responsive-carousel';
 
 import MovieInfo from '../../templates/MovieInfo';
@@ -178,7 +178,7 @@ class MovieDetail extends Component {
         return(
             <Modal size='large' open={open} onClose={() => handleHide()}>
               <Modal.Content image scrolling>
-                <Grid celled='internally'>
+                <Grid>
                   <Segment>
                     <Grid.Row>
                       <Grid.Column>

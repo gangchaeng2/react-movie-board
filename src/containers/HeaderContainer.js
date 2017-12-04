@@ -8,12 +8,12 @@ import * as viewSelectorActions from '../modules/viewSelector';
 import Header from '../components/molecules/Header/Header';
 
 class HeaderContainer extends Component {
-    searchMovie = async (query) => {
+    searchMovie = async (query, page) => {
         const { searchMovieActions } = this.props;
         const { viewSelectorActions } = this.props;
 
         viewSelectorActions.setView('search');
-        searchMovieActions.setQuery(query);
+        searchMovieActions.setQuery(query, 1);
 
         try {
             await searchMovieActions.searchMovie(query);

@@ -8,7 +8,8 @@ import * as utils from '../../../lib/utils';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    margin-top: 5rem;
+    margin-top: -7rem;
+}
 `;
 
 const showLabel = (data) => {
@@ -143,24 +144,18 @@ const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
 
 const BoxOfficeList = ({ boxOfficeList, handleOpen }) => {
   return(
-      <div>
-        <MovieCarousel
-            boxOfficeList={boxOfficeList}
-            handleOpen={handleOpen}
-        />
-        <Wrapper>
-          <Grid columns={2}>
-            <PrintBoxOfficeList
-                boxOfficeList={boxOfficeList}
-                handleOpen={handleOpen}
-            />
-            <PrintBoxOfficeDetail
-                boxOfficeList={boxOfficeList}
-                handleOpen={handleOpen}
-            />
-          </Grid>
-        </Wrapper>
-      </div>
+      <Wrapper>
+        <Grid columns={2}>
+          <PrintBoxOfficeList
+              boxOfficeList={boxOfficeList}
+              handleOpen={handleOpen}
+          />
+          <PrintBoxOfficeDetail
+              boxOfficeList={boxOfficeList}
+              handleOpen={handleOpen}
+          />
+        </Grid>
+      </Wrapper>
   );
 }
 

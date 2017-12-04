@@ -10,7 +10,7 @@ const MovieInfo = ({code, title, title_url
     const releasDay = utils.getOpenDate(d_day, gubun);
 
     return (
-      <Card link={true} onClick={() => handleOpen(title, code)}>
+      <Card link={true} onClick={() => handleOpen(title, code)} size='tiny'>
         <Image src={`${poster.large}`} />
         <Card.Content>
           <Card.Header>

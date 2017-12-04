@@ -17,7 +17,8 @@ class BoxOfficeContainer extends Component {
     handleOpen = async (title, code) => {
         const { modalMovieActions } = this.props;
 
-        await modalMovieActions.searchMovieTmp(title).then(function(res){
+        await modalMovieActions.searchMovieTmp(title).
+        then(function(res) {
             modalMovieActions.getSimilarMovieList(code);
         });
     }
@@ -41,8 +42,7 @@ class BoxOfficeContainer extends Component {
 
 export default connect(
     (state) => ({
-        boxOfficeList: state.boxOffice.boxOfficeList,
-        movieTmp: state.boxOffice.items
+        boxOfficeList: state.boxOffice.boxOfficeList
     }),
     (dispatch) => ({
         modalMovieActions: bindActionCreators(modalMovieActions, dispatch),

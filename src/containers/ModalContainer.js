@@ -23,7 +23,8 @@ class ModalContainer extends Component {
 
     render() {
         const { modal } = this.props;
-        const { open, item, similarMovieList } = modal.toJS();
+        const { handleOpen, handleHide } = this;
+        const { open, item, similarMovieList, loadingStatus } = modal.toJS();
 
         return (
             <div>
@@ -31,8 +32,9 @@ class ModalContainer extends Component {
                     open={open}
                     movieInfo={item}
                     similarMovies={similarMovieList}
-                    handleHide={this.handleHide}
-                    handleOpen={this.handleOpen}
+                    handleHide={handleHide}
+                    handleOpen={handleOpen}
+                    loadingStatus={loadingStatus}
                 />
             </div>
         );

@@ -3,10 +3,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as modalMovieActions from '../modules/modalMovie';
+import * as searchMovieActions from '../modules/searchMovie';
 
 import SearchResult from '../components/molecules/SearchResult/SearchResult';
 
 class SearchResultContainer extends Component {
+    doPaging = async (action) => {
+        const { query, page, searchMovieActions } = this.props;
+        const goPage = action === 'next' ? page + 1 : page -1;
+        searchMovieActions.setPage(goPage);
+        await searchMovieActions.searchMovie(query, goPage);
+    }
+
     // 모달 열기
     handleOpen = async (title, code) => {
         const { items, modalMovieActions } = this.props;
@@ -24,15 +32,18 @@ class SearchResultContainer extends Component {
     }
 
     render() {
-        const { items, query } = this.props;
-        console.log(query);
-        const { handleOpen } = this;
+        const { items, query, loadingStatus, page, totalCnt } = this.props;
+        const { handleOpen, doPaging } = this;
 
         return (
             <SearchResult
                 movieList={items}
                 handleOpen={handleOpen}
                 query={query}
+                loadingStatus={loadingStatus}
+                doPaging={doPaging}
+                page={page}
+                totalCnt={totalCnt}
             />
         );
     }
@@ -41,9 +52,13 @@ class SearchResultContainer extends Component {
 export default connect(
     (state) => ({
         items: state.searchMovie.items,
-        query: state.searchMovie.query
+        query: state.searchMovie.query,
+        page: state.searchMovie.page,
+        loadingStatus: state.searchMovie.loadingStatus,
+        totalCnt: state.searchMovie.totalCnt
     }),
     (dispatch) => ({
-        modalMovieActions: bindActionCreators(modalMovieActions, dispatch)
+        modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
+        searchMovieActions: bindActionCreators(searchMovieActions, dispatch)
     })
 )(SearchResultContainer);

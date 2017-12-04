@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Loader, Dimmer, Button, Grid, Icon } from 'semantic-ui-react';
 
 import MovieInfo from '../../templates/MovieInfo';
 import * as utils from '../../../lib/utils';
 
+import './SearchResult.css';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -56,7 +57,7 @@ const PrintMovieList = ({ movieList, handleOpen, query }) => {
         return (
             <div>
               <WrapperCnt>입력하신 <SearchQuery>{query}</SearchQuery>에 대한 검색결과 입니다.</WrapperCnt>
-              <Card.Group itemsPerRow={4}>
+              <Card.Group itemsPerRow={6}>
                 {movieInfoList}
               </Card.Group>
             </div>
@@ -68,18 +69,40 @@ const PrintMovieList = ({ movieList, handleOpen, query }) => {
     }
 }
 
-const SearchResult = ({ movieList, handleOpen, query }) => {
+const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, page, totalCnt }) => {
   return(
     <div>
-        <WrapperCnt>
-
-        </WrapperCnt>
         <Wrapper>
-          <PrintMovieList
-              movieList={movieList}
-              handleOpen={handleOpen}
-              query={query}
-          />
+          <Dimmer active={loadingStatus}>
+            <Loader indeterminate size="massive">Searching MovieList</Loader>
+          </Dimmer>
+            <Grid centered={true}>
+              <Grid.Row>
+                {page > 1 &&
+                  <Grid.Column width={1}>
+                    <Button icon onClick={() => doPaging('prev')}>
+                        <Icon name='chevron left' size='huge'/>
+                    </Button>
+                  </Grid.Column>
+                }
+
+                <Grid.Column width={13}>
+                  <PrintMovieList
+                      movieList={movieList}
+                      handleOpen={handleOpen}
+                      query={query}
+                  />
+              </Grid.Column>
+
+              {totalCnt > 12 &&
+                <Grid.Column width={1}>
+                  <Button icon onClick={() => doPaging('next')}>
+                      <Icon name='chevron right' size='huge'/>
+                  </Button>
+                </Grid.Column>
+              }
+            </Grid.Row>
+          </Grid>
         </Wrapper>
     </div>
   );
