@@ -63,3 +63,15 @@ export function getStillCutList(media) {
     }
     return list;
 }
+
+export function cutStory(story) {
+    let cutStroy = '';
+    if(!isEmpty(story)) {
+        if(story.length > 200) {
+            cutStroy = story.substr(0, 200)+'...';
+        } else {
+            cutStroy = story;
+        }
+    }
+    return cutStroy;
+}

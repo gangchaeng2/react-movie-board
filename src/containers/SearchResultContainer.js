@@ -24,13 +24,15 @@ class SearchResultContainer extends Component {
     }
 
     render() {
-        const { items } = this.props;
+        const { items, query } = this.props;
+        console.log(query);
         const { handleOpen } = this;
 
         return (
             <SearchResult
                 movieList={items}
                 handleOpen={handleOpen}
+                query={query}
             />
         );
     }
@@ -38,7 +40,8 @@ class SearchResultContainer extends Component {
 
 export default connect(
     (state) => ({
-        items: state.searchMovie.items
+        items: state.searchMovie.items,
+        query: state.searchMovie.query
     }),
     (dispatch) => ({
         modalMovieActions: bindActionCreators(modalMovieActions, dispatch)

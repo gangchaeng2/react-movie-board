@@ -43,7 +43,7 @@ const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, direc
               <Feed>
                 <Feed.Event
                   icon='pencil'
-                  summary={interesting_comment.text}
+                  summary={utils.cutStory(interesting_comment.text)}
                 />
               </Feed>
             </Segment>
@@ -146,6 +146,7 @@ const BoxOfficeList = ({ boxOfficeList, handleOpen }) => {
       <div>
         <MovieCarousel
             boxOfficeList={boxOfficeList}
+            handleOpen={handleOpen}
         />
         <Wrapper>
           <Grid columns={2}>

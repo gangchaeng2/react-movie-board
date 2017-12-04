@@ -6,7 +6,6 @@ import * as searchMovieActions from '../modules/searchMovie';
 import * as viewSelectorActions from '../modules/viewSelector';
 
 import Header from '../components/molecules/Header/Header';
-import SubHeader from '../components/molecules/Header/SubHeader';
 
 class HeaderContainer extends Component {
     searchMovie = async (query) => {
@@ -14,6 +13,7 @@ class HeaderContainer extends Component {
         const { viewSelectorActions } = this.props;
 
         viewSelectorActions.setView('search');
+        searchMovieActions.setQuery(query);
 
         try {
             await searchMovieActions.searchMovie(query);
@@ -30,17 +30,14 @@ class HeaderContainer extends Component {
 
     render() {
         const { view } = this.props;
-        const { handleSelect } = this;
+        const { handleSelect, searchMovie } = this;
 
         return (
-            <div>
-              <Header />
-              <SubHeader
-                  searchMovie={this.searchMovie}
-                  activeMenu={view}
-                  onSelect={handleSelect}
-              />
-          </div>
+            <Header
+                searchMovie={searchMovie}
+                activeMenu={view}
+                handleSelect={handleSelect}
+            />
         );
     }
 }
@@ -48,6 +45,7 @@ class HeaderContainer extends Component {
 export default connect(
     (state) => ({
         items: state.searchMovie.items,
+        query: state.searchMovie.query,
         view: state.viewSelector.get('view')
     }),
     (dispatch) => ({

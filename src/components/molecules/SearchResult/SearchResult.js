@@ -11,10 +11,15 @@ const Wrapper = styled.div`
 `;
 
 const WrapperCnt = styled.div`
-    margin-top: 5rem;
+    margin-bottom: 5rem;
+    font-size: 2rem;
 `;
 
-const PrintMovieList = ({ movieList, handleOpen }) => {
+const SearchQuery = styled.span`
+  color: #79b3d4;
+`;
+
+const PrintMovieList = ({ movieList, handleOpen, query }) => {
     if(!utils.isEmpty(movieList)) {
         const movieInfoList = movieList.map((movie, i) => {
             const { code,
@@ -49,18 +54,21 @@ const PrintMovieList = ({ movieList, handleOpen }) => {
         });
 
         return (
-            <Card.Group itemsPerRow={4}>
-              {movieInfoList}
-            </Card.Group>
+            <div>
+              <WrapperCnt>입력하신 <SearchQuery>{query}</SearchQuery>에 대한 검색결과 입니다.</WrapperCnt>
+              <Card.Group itemsPerRow={4}>
+                {movieInfoList}
+              </Card.Group>
+            </div>
         );
     } else {
         return (
-            <div>검색어를 입력해주세요.</div>
+            <div></div>
         )
     }
 }
 
-const SearchResult = ({ movieList, handleOpen }) => {
+const SearchResult = ({ movieList, handleOpen, query }) => {
   return(
     <div>
         <WrapperCnt>
@@ -70,6 +78,7 @@ const SearchResult = ({ movieList, handleOpen }) => {
           <PrintMovieList
               movieList={movieList}
               handleOpen={handleOpen}
+              query={query}
           />
         </Wrapper>
     </div>
