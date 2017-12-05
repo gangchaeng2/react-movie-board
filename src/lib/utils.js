@@ -64,14 +64,59 @@ export function getStillCutList(media) {
     return list;
 }
 
-export function cutStory(story) {
+export function cutStory(story, gubun) {
     let cutStroy = '';
-    if(!isEmpty(story)) {
-        if(story.length > 200) {
-            cutStroy = story.substr(0, 200)+'...';
+    let cutSize = 300;
+
+    if(gubun === 'comment') {
+        cutSize = 200;
+        if(!isEmpty(story)) {
+            if(story.text.length > cutSize) {
+                cutStroy = story.text.substr(0, cutSize)+'...';
+            } else {
+                cutStroy = story.text;
+            }
         } else {
-            cutStroy = story;
+            cutStroy = '게시된 리뷰가 없습니다.';
+        }
+    } else {
+        if(!isEmpty(story)) {
+            if(story.length > cutSize) {
+                cutStroy = story.substr(0, cutSize)+'...';
+            } else {
+                cutStroy = story;
+            }
+        } else {
+            cutStroy = '게시된 리뷰가 없습니다.';
         }
     }
+
     return cutStroy;
+}
+
+export function getRating(rating) {
+    let newRating = '';
+
+    switch(Math.floor(rating)) {
+        case 1:
+          newRating = '★';
+          break;
+        case 2:
+          newRating = '★★';
+          break;
+        case 3:
+          newRating = '★★★';
+          break;
+        case 4:
+          newRating = '★★★★';
+          break;
+        case 5:
+          newRating = '★★★★★';
+          break;
+        default:
+          newRating = '★★★';
+          break;
+      }
+
+      return newRating;
 }

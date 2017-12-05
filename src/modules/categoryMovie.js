@@ -38,6 +38,66 @@ export default handleActions({
             cateMovies = cateMovies[0].cards;
             // menu = category;
             break;
+        case 'millionMoive':
+            cateMovies = cateMovieUtils.getMillionMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'noirMoive':
+            cateMovies = cateMovieUtils.getNoirMoiveList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'superHeroMovie':
+            cateMovies = cateMovieUtils.getSuperHeroMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'comedyMoive':
+            cateMovies = cateMovieUtils.getComedyMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'sportsMoive':
+            cateMovies = cateMovieUtils.getSportsMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'thrillerMovie':
+            cateMovies = cateMovieUtils.getThrillerMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'criminalMoive':
+            cateMovies = cateMovieUtils.getCriminalMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'animationMoive':
+            cateMovies = cateMovieUtils.getAnimationMoiveList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'romanticMoive':
+            cateMovies = cateMovieUtils.getRomanticMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'actionMoive':
+            cateMovies = cateMovieUtils.getActionMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'warMovie':
+            cateMovies = cateMovieUtils.getWarMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
+        case 'fantasyMovie':
+            cateMovies = cateMovieUtils.getFantasyMovieList();
+            cateMovies = cateMovies[0].cards;
+            // menu = category;
+            break;
         default:
             break;
       }

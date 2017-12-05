@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import MovieInfo from '../../templates/MovieInfo';
 import * as utils from '../../../lib/utils';
 
-import '../../../css/carousel.css';
+import './MovieDetail.css';
 import styled from 'styled-components';
 
 const PeopleName = styled.span`
@@ -18,7 +18,7 @@ const PeopleRole = styled.span`
 `;
 
 class MovieDetail extends Component {
-    state = { open : false }
+    state = { open : false };
 
     onOpen = () => {
         this.setState({
@@ -47,7 +47,7 @@ class MovieDetail extends Component {
         if(!utils.isEmpty(youtubeId)) {
             return(
                 <Modal size='small' open={open2} onOpen={this.onOpen}
-                    dimmer={false} trigger={<div><Header>예고편</Header><Image src={`${stillCut}`}/></div>} style={modalStyle}>
+                    dimmer={false} trigger={<div className='trailer'><Header>예고편</Header><Image src={stillCut} label={{ as: 'a', color: 'red', content: 'Play', icon: 'video play outline', ribbon: true, size: 'big' }}/></div>} style={modalStyle}>
                     <Button icon circular={true} style={buttonStyle} onClick={this.onClose} floated='right'><Icon name='close' color='grey'/></Button>
                     <Modal.Content style={modalStyle}>
                       <iframe className="player" title="trailer" type="text/html" src={videoSrc} frameBorder="0" width="100%" height="550px"/>
@@ -68,10 +68,8 @@ class MovieDetail extends Component {
                     title_url,
                     filmrate,
                     poster,
-                    nation,
                     main_genre,
                     year,
-                    d_day,
                     running_time,
                     watcha_rating
             } = movie.items[0].item;
@@ -142,7 +140,6 @@ class MovieDetail extends Component {
           poster,
           audience_count,
           main_genre,
-          year,
           running_time_str,
           nation,
           story,
@@ -179,17 +176,16 @@ class MovieDetail extends Component {
             <Modal size='large' open={open} onClose={() => handleHide()}>
               <Modal.Content image scrolling>
                 <Grid>
-                  <Segment>
-                    <Grid.Row>
-                      <Grid.Column>
-                        <Carousel emulateTouch showThumbs={false} autoPlay interval={5000} infiniteLoop>
-                            {stillCutDiv}
-                        </Carousel>
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Segment>
-
                   <Grid.Row>
+                    <Grid.Column>
+                      <Carousel emulateTouch showThumbs={false} autoPlay interval={5000} infiniteLoop>
+                          {stillCutDiv}
+                      </Carousel>
+                    </Grid.Column>
+                  </Grid.Row>
+
+
+                  <Grid.Row className='info-row' centered>
                     <Grid.Column width={12}>
                       <Segment>
                         <Header>영화정보</Header>
@@ -211,7 +207,7 @@ class MovieDetail extends Component {
                               </Item.Description><br/>
 
                               <Item.Header>줄거리</Item.Header>
-                              <Item.Description>{utils.cutStory(story)}</Item.Description><br/>
+                              <Item.Description>{utils.cutStory(story, 'detail')}</Item.Description><br/>
 
                               <Item.Header>평점</Item.Header>
                               <Item.Extra><Rating icon='star' defaultRating={watcha_rating} maxRating={5} disabled/></Item.Extra>

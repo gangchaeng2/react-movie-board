@@ -1,0 +1,11 @@
+div.centered.row.info-row {
+  margin-top: -3rem;
+}
+
+.ui.modal .scrolling.content {
+  max-height: calc(94vh);
+}
+
+div.trailer:hover {
+    cursor:pointer;
+}

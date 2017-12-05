@@ -2,13 +2,12 @@ import React from 'react';
 import { Grid, Feed, Card, Item, Label, Segment, Rating } from 'semantic-ui-react'
 
 import MovieCarousel from './MovieCarousel';
-
 import * as utils from '../../../lib/utils';
 
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    margin-top: -7rem;
+    margin-top: 7rem;
 }
 `;
 
@@ -44,7 +43,7 @@ const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, direc
               <Feed>
                 <Feed.Event
                   icon='pencil'
-                  summary={utils.cutStory(interesting_comment.text)}
+                  summary={utils.cutStory(interesting_comment, 'comment')}
                 />
               </Feed>
             </Segment>
@@ -129,7 +128,7 @@ const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
           <Card>
             <Card.Content>
               <Card.Header>
-                박스 오피스
+                영화 순위
               </Card.Header>
             </Card.Content>
             <Card.Content>
@@ -145,6 +144,10 @@ const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
 const BoxOfficeList = ({ boxOfficeList, handleOpen }) => {
   return(
       <Wrapper>
+        <MovieCarousel
+            boxOfficeList={boxOfficeList}
+            handleOpen={handleOpen}
+        />
         <Grid columns={2}>
           <PrintBoxOfficeList
               boxOfficeList={boxOfficeList}

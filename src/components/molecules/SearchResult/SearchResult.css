@@ -1,1 +1,10 @@
-.ui .button { margin-top: 45rem; }
+.ui .button.page-btn {
+  margin-top: 33rem;
+  background-color: white;
+}
+.ui.button:hover {
+  background-color: white;
+}
+.ui.column.grid>[class*="one wide"].column, .ui.grid>.column.row>[class*="one wide"].column, .ui.grid>.row>[class*="one wide"].column, .ui.grid>[class*="one wide"].column {
+  width:8.25%!important;
+}

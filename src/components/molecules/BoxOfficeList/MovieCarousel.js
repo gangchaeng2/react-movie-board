@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
-import '../../../css/carousel.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import './carousel.css';
 import styled from 'styled-components';
 
 const CarouselDiv = styled.div`
@@ -21,7 +21,7 @@ const getCarouselList = (list, handleOpen) => {
 
 const BoxOfficeCarousel = ({boxOfficeList, handleOpen}) => {
     return(
-      <Carousel centerMode centerSlidePercentage={34} showStatus={false} showThumbs={false} showIndicators={false} autoPlay interval={5000} infiniteLoop>
+      <Carousel centerMode centerSlidePercentage={32} selectedItem={2} showStatus={false} showThumbs={false} showIndicators={false} autoPlay interval={3000} infiniteLoop>
           {getCarouselList(boxOfficeList, handleOpen)}
       </Carousel>
     );

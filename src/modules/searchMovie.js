@@ -4,7 +4,7 @@ import { pender } from 'redux-pender';
 import axios from 'axios';
 
 function searchMovieListByQuery(query, page) {
-    return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=12&page=${page}`);
+    return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=10&page=${page}`);
 }
 
 const GET_MOVIE = 'GET_MOVIE';

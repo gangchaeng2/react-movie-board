@@ -1,0 +1,7 @@
+.carousel.carousel-slider {
+  margin-bottom: 2rem;
+}
+  
+.carousel .slide img {
+  max-height:400px;max-width: 100%;
+}

@@ -9,15 +9,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     margin-top: 1rem;
-`;
-
-const WrapperCnt = styled.div`
-    margin-bottom: 5rem;
-    font-size: 2rem;
-`;
-
-const SearchQuery = styled.span`
-  color: #79b3d4;
+    margin: 0 auto;
 `;
 
 const PrintMovieList = ({ movieList, handleOpen, query }) => {
@@ -56,8 +48,7 @@ const PrintMovieList = ({ movieList, handleOpen, query }) => {
 
         return (
             <div>
-              <WrapperCnt>입력하신 <SearchQuery>{query}</SearchQuery>에 대한 검색결과 입니다.</WrapperCnt>
-              <Card.Group itemsPerRow={6}>
+              <Card.Group itemsPerRow={5}>
                 {movieInfoList}
               </Card.Group>
             </div>
@@ -77,10 +68,10 @@ const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, p
             <Loader indeterminate size="massive">Searching MovieList</Loader>
           </Dimmer>
             <Grid centered={true}>
-              <Grid.Row>
+              <Grid.Row centered={true}>
                 {page > 1 &&
                   <Grid.Column width={1}>
-                    <Button icon onClick={() => doPaging('prev')}>
+                    <Button icon onClick={() => doPaging('prev')} className='page-btn'>
                         <Icon name='chevron left' size='huge'/>
                     </Button>
                   </Grid.Column>
@@ -94,9 +85,9 @@ const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, p
                   />
               </Grid.Column>
 
-              {totalCnt > 12 &&
+              {totalCnt > 10 &&
                 <Grid.Column width={1}>
-                  <Button icon onClick={() => doPaging('next')}>
+                  <Button icon onClick={() => doPaging('next')} className='page-btn'>
                       <Icon name='chevron right' size='huge'/>
                   </Button>
                 </Grid.Column>

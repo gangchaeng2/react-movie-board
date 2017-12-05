@@ -1,6 +1,7 @@
 import React from 'react';
-import { Menu, Segment, Input, Icon } from 'semantic-ui-react'
+import { Menu, Input, Icon } from 'semantic-ui-react'
 
+import './Header.css';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -23,8 +24,8 @@ const Header = ({searchMovie, handleSelect, activeMenu}) => {
 
     return (
       <Wrapper>
-        <Segment inverted>
-          <Menu inverted pointing secondary>
+          <Menu tabular inverted>
+            <Menu.Item name='home' className='home' id='home' active={activeMenu === 'home'}  onClick={selectMenu} />
             <Menu.Item name='box office' className='box office' id='box office' active={activeMenu === 'box office'}  onClick={selectMenu} />
             <Menu.Item name='category' className='category' id='category' active={activeMenu === 'category'} onClick={selectMenu} />
             <Menu.Item name='search' className='search' id='search' active={activeMenu === 'search'} onClick={selectMenu} />
@@ -37,7 +38,6 @@ const Header = ({searchMovie, handleSelect, activeMenu}) => {
               </Menu.Item>
             </Menu.Menu>
           </Menu>
-        </Segment>
       </Wrapper>
     );
 }

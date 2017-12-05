@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Map } from 'immutable';
 
 function searchMovieListByQuery(query) {
-    return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=12`);
+    return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=1`);
 }
 
 function getSimilarMovieByCode(code) {

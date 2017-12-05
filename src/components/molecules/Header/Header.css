@@ -1,0 +1,11 @@
+.ui.tabular.menu .active.item {
+    border-color: #1b1c1d;
+    height: 90%;
+    margin-top: 0.5rem;
+    background: #1b1c1d;
+
+}
+
+.ui.inverted.menu {
+    height: 82px;
+}

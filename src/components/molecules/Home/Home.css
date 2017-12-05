@@ -1,0 +1,36 @@
+.carousel .slide {
+    min-width: 100%;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    background: white;
+}
+.carousel.carousel-slider .control-arrow {
+    background-color: black;
+}
+.carousel.carousel-slider {
+    margin-bottom: 2rem;
+}
+.carousel .slide img {
+    max-height:400px;max-width: 100%;
+}
+.ui.five.cards.home-card {
+    max-height:553px;
+}
+.ui.five.cards.home-card {
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 23px;
+    margin-bottom: 1px;
+}
+.ui.header.menu-title {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+.ui.feed>.event>.content {
+    font-size: 10px;
+}
+.ui.feed>.event>.label {
+    width: -2.5rem;
+}
