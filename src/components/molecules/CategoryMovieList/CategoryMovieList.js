@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Menu } from 'semantic-ui-react';
+import { Grid, Menu, Dimmer, Loader } from 'semantic-ui-react';
 
 import PrintCateMovieList from './PrintCateMovieList';
 
@@ -28,21 +28,28 @@ const CategoryMenu = ({ getCateMovieList, menu }) => {
     )
 }
 
-const CategoryMoiveList = ({ cateMovieList, handleOpen, getCateMovieList, menu}) => {
+const CategoryMoiveList = ({ cateMovieList, handleOpen, getCateMovieList, menu, loadingStatus }) => {
     return (
-      <Grid>
-        <CategoryMenu
-            getCateMovieList={getCateMovieList}
-            menu={menu}
+      <div>
+        <Dimmer
+          active={loadingStatus}
+          content={<Loader indeterminate size="massive">Loading MovieInfo</Loader>}
+          page={true}
         />
-
-      <Grid.Column width={12}>
-          <PrintCateMovieList
-            handleOpen={handleOpen}
-            cateMovieList={cateMovieList}
+        <Grid>
+          <CategoryMenu
+              getCateMovieList={getCateMovieList}
+              menu={menu}
           />
-        </Grid.Column>
-      </Grid>
+
+        <Grid.Column width={12}>
+            <PrintCateMovieList
+              handleOpen={handleOpen}
+              cateMovieList={cateMovieList}
+            />
+          </Grid.Column>
+        </Grid>
+      </div>
     );
 }
 

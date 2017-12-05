@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Card, Image, Feed, Grid, Menu } from 'semantic-ui-react';
+import { Header, Card, Image, Feed, Grid, Menu, Dimmer, Loader } from 'semantic-ui-react';
 import { Carousel } from 'react-responsive-carousel';
 
 import * as utils from '../../../lib/utils';
 
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Home.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 
 const PrintRankList = ({ boxOfficeList }) => {
     const movieList = boxOfficeList.map((movie, i) => {
@@ -15,7 +16,7 @@ const PrintRankList = ({ boxOfficeList }) => {
           <Feed.Event as='a' key={i}>
             <Feed.Label content={i+1} />
             <Feed.Content>
-              <Feed.Summary>
+              <Feed.Summary className='boxoffice-summary'>
                 {title}
               </Feed.Summary>
             </Feed.Content>
@@ -67,7 +68,7 @@ const PrintMoiveList = ({ movieList, handleOpen, gubun }) => {
     const movieList_2 = movieList.slice(10,20);
 
     return (
-        <Carousel emulateTouch showThumbs={false} showStatus={false} showThumbs={false} showIndicators={false}>
+        <Carousel className='home-carousel' emulateTouch showThumbs={false} showStatus={false} showThumbs={false} showIndicators={false}>
             <MovieCard
                 movieList={movieList_1}
                 handleOpen={handleOpen}
@@ -94,21 +95,25 @@ const PrintCategoryMovieMenu = ({ menu, getCateMovieList, handleOpen }) => {
         <Menu.Item name='스포츠 영화'                active={menu === 'sportsMoive'}           onClick={() => getCateMovieList('sportsMoive')}/>
         <Menu.Item name='애니메이션 영화'            active={menu === 'animationMoive'}        onClick={() => getCateMovieList('animationMoive')}/>
         <Menu.Item name='슈퍼 히어로 영화'           active={menu === 'superHeroMovie'}        onClick={() => getCateMovieList('superHeroMovie')}/>
-        <Menu.Item name='코미디 영화'               active={menu === 'comedyMoive'}            onClick={() => getCateMovieList('comedyMoive')}/>
+        <Menu.Item name='코미디 영화'                active={menu === 'comedyMoive'}            onClick={() => getCateMovieList('comedyMoive')}/>
         <Menu.Item name='스릴러 영화'               active={menu === 'thrillerMovie'}          onClick={() => getCateMovieList('thrillerMovie')}/>
-        <Menu.Item name='범죄 영화'                active={menu === 'criminalMoive'}           onClick={() => getCateMovieList('criminalMoive')}/>
-        <Menu.Item name='판타지 영화'                active={menu === 'fantasyMovie'}           onClick={() => getCateMovieList('fantasyMovie')}/>
-        <Menu.Item name='액션 영화'                active={menu === 'actionMoive'}           onClick={() => getCateMovieList('actionMoive')}/>
-        <Menu.Item name='전쟁 영화'                active={menu === 'warMovie'}           onClick={() => getCateMovieList('warMovie')}/>
-        <Menu.Item name='로맨틱 영화'                active={menu === 'romanticMoive'}           onClick={() => getCateMovieList('romanticMoive')}/>
+        <Menu.Item name='범죄 영화'                 active={menu === 'criminalMoive'}           onClick={() => getCateMovieList('criminalMoive')}/>
+        <Menu.Item name='판타지 영화'               active={menu === 'fantasyMovie'}           onClick={() => getCateMovieList('fantasyMovie')}/>
+        <Menu.Item name='액션 영화'                 active={menu === 'actionMoive'}           onClick={() => getCateMovieList('actionMoive')}/>
+        <Menu.Item name='전쟁 영화'                 active={menu === 'warMovie'}           onClick={() => getCateMovieList('warMovie')}/>
+        <Menu.Item name='로맨틱 영화'               active={menu === 'romanticMoive'}           onClick={() => getCateMovieList('romanticMoive')}/>
       </Menu>
     );
 }
 
-const Home = ({ boxOfficeList, cateMovieList, menu, getCateMovieList, handleOpen }) => {
-
+const Home = ({ boxOfficeList, cateMovieList, menu, getCateMovieList, handleOpen, loadingStatus }) => {
   return(
       <div>
+        <Dimmer
+          active={loadingStatus}
+          content={<Loader indeterminate size="massive">Loading MovieInfo</Loader>}
+          page={true}
+        />
         <Grid>
           <Header>오늘의 박스 오피스</Header>
           <Grid.Row columns={2} verticalAlign='middle'>

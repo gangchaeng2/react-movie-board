@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Feed, Card, Item, Label, Segment, Rating } from 'semantic-ui-react'
+import { Grid, Feed, Card, Item, Label, Segment, Rating, Dimmer, Loader } from 'semantic-ui-react'
 
 import MovieCarousel from './MovieCarousel';
 import * as utils from '../../../lib/utils';
@@ -141,9 +141,14 @@ const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
     );
 }
 
-const BoxOfficeList = ({ boxOfficeList, handleOpen }) => {
+const BoxOfficeList = ({ boxOfficeList, handleOpen, loadingStatus }) => {
   return(
       <Wrapper>
+        <Dimmer
+            active={loadingStatus}
+            content={<Loader indeterminate size="massive">Loading MovieInfo</Loader>}
+            page={true}
+        />
         <MovieCarousel
             boxOfficeList={boxOfficeList}
             handleOpen={handleOpen}

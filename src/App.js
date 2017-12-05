@@ -52,8 +52,8 @@ class App extends Component {
                   <Container visible={view === 'category'}>
                       <CategoryContainer />
                   </Container>
-                  <ModalContainer />
               </Wrapper>
+              <ModalContainer />
             </div>
         );
     }

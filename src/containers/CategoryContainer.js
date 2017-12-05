@@ -31,7 +31,8 @@ class CategoryContainer extends Component {
     }
 
     render() {
-        const { cateMovieList, menu } = this.props;
+        const { cateMovieList, menu, modal } = this.props;
+        const { loadingStatus } = modal.toJS();
         const { handleOpen, getCateMovieList } = this;
 
         return (
@@ -41,6 +42,7 @@ class CategoryContainer extends Component {
                   cateMovieList={cateMovieList}
                   getCateMovieList={getCateMovieList}
                   menu={menu}
+                  loadingStatus={loadingStatus}
               />
             </div>
         );
@@ -50,7 +52,8 @@ class CategoryContainer extends Component {
 export default connect(
     (state) => ({
         cateMovieList: state.categoryMovie.cateMovies,
-        menu: state.categoryMovie.menu
+        menu: state.categoryMovie.menu,
+        modal: state.modalMovie
     }),
     (dispatch) => ({
         categoryMovieActions: bindActionCreators(categoryMovieActions, dispatch),

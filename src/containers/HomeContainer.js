@@ -38,7 +38,8 @@ class HomeContainer extends Component {
     }
 
     render() {
-        const { boxOfficeList, menu, cateMovieList } = this.props;
+        const { boxOfficeList, menu, cateMovieList, modal } = this.props;
+        const { loadingStatus } = modal.toJS();
         const { getCateMovieList, handleOpen } = this;
 
         return(
@@ -48,6 +49,7 @@ class HomeContainer extends Component {
                 cateMovieList={cateMovieList}
                 getCateMovieList={getCateMovieList}
                 handleOpen={handleOpen}
+                loadingStatus={loadingStatus}
             />
         );
     }
@@ -57,7 +59,8 @@ export default connect(
     (state) => ({
         boxOfficeList: state.boxOffice.boxOfficeListHome,
         cateMovieList: state.categoryMovie.cateMovies,
-        menu: state.categoryMovie.menu
+        menu: state.categoryMovie.menu,
+        modal: state.modalMovie
     }),
     (dispatch) => ({
         categoryMovieActions: bindActionCreators(categoryMovieActions, dispatch),

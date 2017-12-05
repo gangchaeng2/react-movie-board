@@ -31,16 +31,21 @@ const initialState = Map({
 export default handleActions({
     [SHOW]: (state, action) => {
         const { item } = action.payload;
-        return state.set('open', true)
+        return state.set('open', false)
                     .set('item', item)
                     .set('loadingStatus', true);
     },
     [HIDE]: (state, action) => state.set('open', false),
     ...pender({
         type: GET_MOVIE_TMP,
+        onPending: (state, action) => {
+            return state.set('open', false)
+                        .set('item', state.toJS().item)
+                        .set('loadingStatus', true);
+        },
         onSuccess: (state, action) => {
             const item = action.payload.data.cards[0].items[0].item;
-            return state.set('open', true)
+            return state.set('open', false)
                         .set('item', item)
                         .set('loadingStatus', true);
         }

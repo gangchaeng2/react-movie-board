@@ -60,41 +60,48 @@ const PrintMovieList = ({ movieList, handleOpen, query }) => {
     }
 }
 
-const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, page, totalCnt }) => {
-  return(
+const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, page, totalCnt, infoLoadingStatus }) => {
+  return (
     <div>
-        <Wrapper>
-          <Dimmer active={loadingStatus}>
-            <Loader indeterminate size="massive">Searching MovieList</Loader>
-          </Dimmer>
-            <Grid centered={true}>
-              <Grid.Row centered={true}>
-                {page > 1 &&
-                  <Grid.Column width={1}>
-                    <Button icon onClick={() => doPaging('prev')} className='page-btn'>
-                        <Icon name='chevron left' size='huge'/>
-                    </Button>
-                  </Grid.Column>
-                }
-
-                <Grid.Column width={13}>
-                  <PrintMovieList
-                      movieList={movieList}
-                      handleOpen={handleOpen}
-                      query={query}
-                  />
+      <Wrapper>
+        <Dimmer
+          active={loadingStatus}
+          content={<Loader indeterminate size="massive">Searching MovieList</Loader>}
+          page
+        />
+        <Dimmer
+          active={infoLoadingStatus}
+          content={<Loader indeterminate size="massive">Loading MovieInfo</Loader>}
+          page
+        />
+        <Grid centered={true}>
+          <Grid.Row centered={true}>
+            {page > 1 &&
+              <Grid.Column width={1}>
+                <Button icon onClick={() => doPaging('prev')} className='page-btn'>
+                    <Icon name='chevron left' size='huge'/>
+                </Button>
               </Grid.Column>
+            }
 
-              {totalCnt > 10 &&
-                <Grid.Column width={1}>
-                  <Button icon onClick={() => doPaging('next')} className='page-btn'>
-                      <Icon name='chevron right' size='huge'/>
-                  </Button>
-                </Grid.Column>
-              }
-            </Grid.Row>
-          </Grid>
-        </Wrapper>
+            <Grid.Column width={13}>
+              <PrintMovieList
+                  movieList={movieList}
+                  handleOpen={handleOpen}
+                  query={query}
+              />
+            </Grid.Column>
+
+            {totalCnt > 10 &&
+              <Grid.Column width={1}>
+                <Button icon onClick={() => doPaging('next')} className='page-btn'>
+                    <Icon name='chevron right' size='huge'/>
+                </Button>
+              </Grid.Column>
+            }
+          </Grid.Row>
+        </Grid>
+      </Wrapper>
     </div>
   );
 }

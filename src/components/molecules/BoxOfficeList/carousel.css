@@ -1,7 +1,11 @@
+.carousel .slide {
+    min-width: 100%;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    background: white;
+}
+
 .carousel.carousel-slider {
   margin-bottom: 2rem;
-}
-  
-.carousel .slide img {
-  max-height:400px;max-width: 100%;
 }

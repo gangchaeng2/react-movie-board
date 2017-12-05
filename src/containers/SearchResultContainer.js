@@ -32,7 +32,8 @@ class SearchResultContainer extends Component {
     }
 
     render() {
-        const { items, query, loadingStatus, page, totalCnt } = this.props;
+        const { items, query, loadingStatus, page, totalCnt, modal } = this.props;
+        const infoLoadingStatus = modal.toJS().loadingStatus;
         const { handleOpen, doPaging } = this;
 
         return (
@@ -44,6 +45,7 @@ class SearchResultContainer extends Component {
                 doPaging={doPaging}
                 page={page}
                 totalCnt={totalCnt}
+                infoLoadingStatus={infoLoadingStatus}
             />
         );
     }
@@ -55,7 +57,8 @@ export default connect(
         query: state.searchMovie.query,
         page: state.searchMovie.page,
         loadingStatus: state.searchMovie.loadingStatus,
-        totalCnt: state.searchMovie.totalCnt
+        totalCnt: state.searchMovie.totalCnt,
+        modal: state.modalMovie
     }),
     (dispatch) => ({
         modalMovieActions: bindActionCreators(modalMovieActions, dispatch),

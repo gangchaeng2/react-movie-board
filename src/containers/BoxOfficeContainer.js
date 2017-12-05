@@ -9,14 +9,6 @@ import * as modalMovieActions from '../modules/modalMovie';
 import * as boxOfficeMovieActions from '../modules/boxOffice';
 
 class BoxOfficeContainer extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            loadingState: false
-        };
-    }
-
     getBoxOfficeList = () => {
         const { boxOfficeMovieActions } = this.props;
         boxOfficeMovieActions.getBoxOffice();
@@ -32,45 +24,16 @@ class BoxOfficeContainer extends Component {
         });
     }
 
-    componentDidMount() {
-        this.getBoxOfficeList();
-
-        $(window).scroll(() => {
-            // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
-            if ($(document).height() - $(window).height() - $(window).scrollTop() < 250) {
-                if(!this.state.loadingState){
-                    console.log("LOAD NOW");
-                    this.setState({
-                        loadingState: true
-                    });
-                }
-            } else {
-                if(this.state.loadingState){
-                    this.setState({
-                        loadingState: false
-                    });
-                }
-            }
-        });
-    }
-
-    componentWillUnMount() {
-        // STOPS THE loadMemoLoop
-        clearTimeout(this.memoLoaderTimeoutId);
-
-        // REMOVE WINDOWS SCROLL LISTENER
-        $(window).unbind();
-    }
-
-
     render() {
+        const { boxOfficeList, modal } = this.props;
+        const { loadingStatus } = modal.toJS();
         const { handleOpen } = this;
-        const { boxOfficeList } = this.props;
 
         return (
             <BoxOfficeList
                 boxOfficeList={boxOfficeList}
                 handleOpen={handleOpen}
+                loadingStatus={loadingStatus}
             />
         );
     }
@@ -78,7 +41,8 @@ class BoxOfficeContainer extends Component {
 
 export default connect(
     (state) => ({
-        boxOfficeList: state.boxOffice.boxOfficeList
+        boxOfficeList: state.boxOffice.boxOfficeList,
+        modal: state.modalMovie
     }),
     (dispatch) => ({
         modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
