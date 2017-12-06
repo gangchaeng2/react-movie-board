@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Loader, Dimmer, Button, Grid, Icon } from 'semantic-ui-react';
+import { Card, Loader, Dimmer } from 'semantic-ui-react';
 
 import MovieInfo from '../../templates/MovieInfo';
 import * as utils from '../../../lib/utils';
@@ -48,7 +48,7 @@ const PrintMovieList = ({ movieList, handleOpen, query, totalCnt }) => {
 
         return (
             <div>
-              입력하신 {query}에 대한 검색결과 {totalCnt}건 입니다.
+              <div className='search-result'>입력하신 <span className='result-count'>{query}</span>에 대한 검색결과 {totalCnt}건 입니다.</div>
               <Card.Group itemsPerRow={5}>
                 {movieInfoList}
               </Card.Group>
@@ -61,7 +61,7 @@ const PrintMovieList = ({ movieList, handleOpen, query, totalCnt }) => {
     }
 }
 
-const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, page, totalCnt, infoLoadingStatus }) => {
+const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, totalCnt, infoLoadingStatus }) => {
   return (
     <div>
       <Wrapper>
@@ -75,18 +75,12 @@ const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, p
           content={<Loader indeterminate size="massive">Loading MovieInfo</Loader>}
           page
         />
-        <Grid centered={true}>
-          <Grid.Row centered={true}>
-            <Grid.Column width={13}>
-              <PrintMovieList
-                  movieList={movieList}
-                  handleOpen={handleOpen}
-                  query={query}
-                  totalCnt={totalCnt}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <PrintMovieList
+            movieList={movieList}
+            handleOpen={handleOpen}
+            query={query}
+            totalCnt={totalCnt}
+        />
       </Wrapper>
     </div>
   );

@@ -1,0 +1,9 @@
+div.search-result {
+  font-size: 2rem;
+  margin-bottom: 2%;
+}
+
+span.result-count {
+    font-weight: bold;
+    color: #79b3d4;
+}

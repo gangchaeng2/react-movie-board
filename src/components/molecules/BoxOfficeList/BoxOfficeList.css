@@ -1,0 +1,7 @@
+div.ui.items>.item .extra>* {
+    background: black;
+}
+
+.ui.label, .ui.labels .label {
+    color: white;
+}

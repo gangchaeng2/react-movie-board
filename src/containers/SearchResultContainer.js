@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, Button } from 'semantic-ui-react';
 import $ from 'jquery';
 
 import * as modalMovieActions from '../modules/modalMovie';
@@ -65,7 +64,7 @@ class SearchResultContainer extends Component {
     }
 
     render() {
-        const { items, query, loadingStatus, page, totalCnt, modal, loadMore } = this.props;
+        const { items, query, loadingStatus, totalCnt, modal } = this.props;
         const infoLoadingStatus = modal.toJS().loadingStatus;
         const { handleOpen, doPaging } = this;
 
@@ -76,7 +75,6 @@ class SearchResultContainer extends Component {
                 query={query}
                 loadingStatus={loadingStatus}
                 doPaging={doPaging}
-                page={page}
                 totalCnt={totalCnt}
                 infoLoadingStatus={infoLoadingStatus}
             />

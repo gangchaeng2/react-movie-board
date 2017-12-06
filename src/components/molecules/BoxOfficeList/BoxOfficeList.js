@@ -4,6 +4,7 @@ import { Grid, Feed, Card, Item, Label, Segment, Rating, Dimmer, Loader } from '
 import MovieCarousel from './MovieCarousel';
 import * as utils from '../../../lib/utils';
 
+import './BoxOfficeList.css';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -20,17 +21,17 @@ const showLabel = (data) => {
     }
 }
 
-const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, directors, poster, nation, main_genre, filmrate, watcha_rating, interesting_comment, handleOpen }) => {
+const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, directors, poster, nation, main_genre, filmrate, watcha_rating, interesting_comment, eval_count, reservation_share, handleOpen }) => {
     return (
         <Item>
           <Item.Image as='a' src={`${poster.original}`} onClick={() => handleOpen(title, code)}/>
           <Item.Content verticalAlign='middle'>
             <Item.Header as='a' onClick={() => handleOpen(title, code)}>{title}</Item.Header><br/><br/>
             <Item.Meta>
-              <span className='cinema'>{releaseInfo}</span> | <span className='cinema'>누적 관객수 {audience}명</span>
+              <span className='cinema'>{releaseInfo}</span> | <span className='cinema'>누적 관객수 {audience}명</span> | <span className='cinema'>예매율 : {utils.getReservation(reservation_share)}%</span>
             </Item.Meta>
             <Item.Description>
-              평점 : <Rating defaultRating={watcha_rating} maxRating={5} disabled icon='star'/><br/>
+              <Rating defaultRating={watcha_rating} maxRating={5} disabled icon='star'/>({utils.getAudience(eval_count)}명 참여)<br/>
               감독 : {directors} <br/>
               출연 : {actors}
             </Item.Description>
@@ -42,7 +43,7 @@ const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, direc
             <Segment>
               <Feed>
                 <Feed.Event
-                  icon='pencil'
+                  icon='comment'
                   summary={utils.cutStory(interesting_comment, 'comment')}
                 />
               </Feed>
@@ -54,7 +55,7 @@ const BoxOfficeDetailItem = ({ releaseInfo, title, code, audience, actors, direc
 
 const PrintBoxOfficeDetail = ({boxOfficeList, handleOpen}) => {
     const detailMovieList = boxOfficeList.map((movie, i) => {
-        const { code, title, d_day, audience_count, main_casts, directors, poster, nation, main_genre, filmrate, watcha_rating, interesting_comment } = movie.items[0].item;
+        const { code, title, d_day, audience_count, main_casts, directors, poster, nation, main_genre, filmrate, watcha_rating, interesting_comment, eval_count, reservation_share } = movie.items[0].item;
         const releaseInfo = utils.getRelaseInfo(d_day);
         const audience = utils.getAudience(audience_count);
         const actors = utils.getPeopleList(main_casts);
@@ -75,6 +76,8 @@ const PrintBoxOfficeDetail = ({boxOfficeList, handleOpen}) => {
                 filmrate={filmrate}
                 watcha_rating={watcha_rating}
                 interesting_comment={interesting_comment}
+                eval_count={eval_count}
+                reservation_share={reservation_share}
                 handleOpen={handleOpen}
             />
         );

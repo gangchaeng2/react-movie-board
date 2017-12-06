@@ -1,3 +1,10 @@
+.carousel .slide img {
+    max-height: 350px;
+    max-width: 100%;
+}
+.carousel.carousel-slider .control-arrow {
+    background-color: black;
+}
 div.carousel .slide {
     min-width: 100%;
     margin: 0;
@@ -7,15 +14,11 @@ div.carousel .slide {
 }
 div.home-carousel .carousel.carousel-slider .control-arrow {
     background-color: black;
-    top: 9%;
-    max-height: 89%
+    top: 8.5%;
+    max-height: 89.5%
 }
 div.carousel.carousel-slider {
     margin-bottom: 2rem;
-}
-.carousel .slide img {
-    max-height: 350px;
-    max-width: 100%;
 }
 
 .ui.five.cards.home-card {
@@ -35,4 +38,11 @@ div.boxoffice-feed>.event {
 }
 div.ui.feed.boxoffice-feed>.event>.label+.content {
     margin: 0.5% 0 .35714286em 1.14285714em
+}
+div.ui.feed.boxoffice-feed>.event:hover {
+    color: red;
+}
+
+div.ui.feed.boxoffice-feed>.event>.content .summary:hover {
+    color:red;
 }

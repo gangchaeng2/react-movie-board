@@ -7,11 +7,11 @@ const CategoryMenu = ({ getCateMovieList, menu }) => {
     return (
       <Grid.Column width={3}>
         <Menu pointing vertical>
+          <Menu.Item name='국내 누적관객수 TOP 영화'    active={menu === 'popularKoreaMoive'}     onClick={() => getCateMovieList('popularKoreaMoive')}/>
+          <Menu.Item name='전세계 흥행 TOP 영화'        active={menu === 'popularWordMoive'}      onClick={() => getCateMovieList('popularWordMoive')}/>
           <Menu.Item name='역대 100만 관객돌파 영화'    active={menu === 'millionMoive'}          onClick={() => getCateMovieList('millionMoive')}/>
           <Menu.Item name='평균평점 높은 영화'          active={menu === 'highRatingMovie'}       onClick={() => getCateMovieList('highRatingMovie')}/>
           <Menu.Item name='전문가 고평점 영화'          active={menu === 'expertRecommendMovie'}  onClick={() => getCateMovieList('expertRecommendMovie')}/>
-          <Menu.Item name='전세계 흥행 TOP 영화'        active={menu === 'popularWordMoive'}      onClick={() => getCateMovieList('popularWordMoive')}/>
-          <Menu.Item name='국내 누적관객수 TOP 영화'    active={menu === 'popularKoreaMoive'}     onClick={() => getCateMovieList('popularKoreaMoive')}/>
           <Menu.Item name='느와르 영화'                active={menu === 'noirMoive'}             onClick={() => getCateMovieList('noirMoive')}/>
           <Menu.Item name='스포츠 영화'                active={menu === 'sportsMoive'}           onClick={() => getCateMovieList('sportsMoive')}/>
           <Menu.Item name='애니메이션 영화'            active={menu === 'animationMoive'}        onClick={() => getCateMovieList('animationMoive')}/>

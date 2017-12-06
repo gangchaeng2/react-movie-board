@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import $ from 'jquery';
 
 import * as boxOfficeMovieActions from '../modules/boxOffice';
 import * as modalMovieActions from '../modules/modalMovie';
 import * as categoryMovieActions from '../modules/categoryMovie';
+import * as viewSelectorActions from '../modules/viewSelector';
 
 import Home from '../components/molecules/Home/Home';
 
@@ -32,6 +34,12 @@ class HomeContainer extends Component {
         boxOfficeMovieActions.getBoxOffice();
     }
 
+    showAllCategory = () => {
+        const { viewSelectorActions } = this.props;
+        viewSelectorActions.setView('category');
+        $(window).scrollTop(0);
+    }
+
     componentDidMount() {
         this.getBoxOfficeList();
         this.getCateMovieList();
@@ -40,7 +48,7 @@ class HomeContainer extends Component {
     render() {
         const { boxOfficeList, menu, cateMovieList, modal } = this.props;
         const { loadingStatus } = modal.toJS();
-        const { getCateMovieList, handleOpen } = this;
+        const { getCateMovieList, handleOpen, showAllCategory } = this;
 
         return(
             <Home
@@ -50,6 +58,7 @@ class HomeContainer extends Component {
                 getCateMovieList={getCateMovieList}
                 handleOpen={handleOpen}
                 loadingStatus={loadingStatus}
+                showAllCategory={showAllCategory}
             />
         );
     }
@@ -65,6 +74,7 @@ export default connect(
     (dispatch) => ({
         categoryMovieActions: bindActionCreators(categoryMovieActions, dispatch),
         modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
-        boxOfficeMovieActions: bindActionCreators(boxOfficeMovieActions, dispatch)
+        boxOfficeMovieActions: bindActionCreators(boxOfficeMovieActions, dispatch),
+        viewSelectorActions: bindActionCreators(viewSelectorActions, dispatch)
     })
 )(HomeContainer);

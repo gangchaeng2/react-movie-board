@@ -90,7 +90,7 @@ class MovieDetail extends Component {
                     d_day={year}
                     watcha_rating={watcha_rating}
                     handleOpen={handleOpen}
-                    gubun={'movieDetail'}
+                    gubun={'simillarMoive'}
                 />
             );
         });
@@ -150,6 +150,7 @@ class MovieDetail extends Component {
           stillcut,
           d_day,
           watcha_rating,
+          eval_count,
           media
         } = movieInfo;
 
@@ -210,7 +211,7 @@ class MovieDetail extends Component {
                               <Item.Description>{utils.cutStory(story, 'detail')}</Item.Description><br/>
 
                               <Item.Header>평점</Item.Header>
-                              <Item.Extra><Rating icon='star' defaultRating={watcha_rating} maxRating={5} disabled/></Item.Extra>
+                              <Item.Description><Rating icon='star' defaultRating={watcha_rating} maxRating={5} disabled/> <b>({utils.getAudience(eval_count)}명 참여)</b></Item.Description>
                             </Item.Content>
                           </Item>
                         </Item.Group>

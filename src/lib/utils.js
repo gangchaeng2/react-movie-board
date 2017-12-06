@@ -9,8 +9,8 @@ export function isEmpty(value) {
 
 // 개봉일
 export function getOpenDate(d_day, gubun) {
-    if(gubun === 'movieDetail') {
-        return d_day;
+    if(gubun === 'simillarMoive') {
+        return d_day+'년';
     } else {
       const today = new Date();
       today.setDate(today.getDate() - d_day);
@@ -25,7 +25,7 @@ export function getOpenDate(d_day, gubun) {
 // 오늘 기준 개봉일
 export function getRelaseInfo(d_day) {
     if(d_day < 0) {
-        return `개봉 ${(d_day + 1) * -1}일 전`;
+        return `개봉 ${d_day * -1}일 전`;
     } else {
         return `개봉 ${d_day + 1}일 째`;
     }
@@ -119,4 +119,14 @@ export function getRating(rating) {
       }
 
       return newRating;
+}
+
+export function getReservation(reservation) {
+    let newReservation = 0;
+
+    if(!isEmpty(reservation)) {
+        newReservation = reservation.toFixed(2);
+    }
+
+    return newReservation;
 }
