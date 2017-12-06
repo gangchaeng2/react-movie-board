@@ -176,7 +176,7 @@ class MovieDetail extends Component {
             <Modal size='large' open={open} onClose={() => handleHide()}>
               <Modal.Content image scrolling>
                 <Grid>
-                  <Grid.Row>
+                  <Grid.Row centered>
                     <Grid.Column>
                       <Carousel emulateTouch showThumbs={false} autoPlay interval={5000} infiniteLoop>
                           {stillCutDiv}

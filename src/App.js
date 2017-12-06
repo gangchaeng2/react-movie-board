@@ -29,11 +29,8 @@ class App extends Component {
         return (
             <div>
               <StickyHeader
-                header={
-                  <HeaderContainer />
-                }
-              >
-              </StickyHeader>
+                header={ <HeaderContainer /> }
+              />
 
               <Helmet>
                   <title>BigShine - MovieProject</title>

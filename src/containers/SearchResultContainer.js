@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Modal, Button } from 'semantic-ui-react';
+import $ from 'jquery';
 
 import * as modalMovieActions from '../modules/modalMovie';
 import * as searchMovieActions from '../modules/searchMovie';
@@ -8,11 +10,22 @@ import * as searchMovieActions from '../modules/searchMovie';
 import SearchResult from '../components/molecules/SearchResult/SearchResult';
 
 class SearchResultContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loadingState: false
+        };
+    }
+
     doPaging = async (action) => {
-        const { query, page, searchMovieActions } = this.props;
-        const goPage = action === 'next' ? page + 1 : page -1;
-        searchMovieActions.setPage(goPage);
-        await searchMovieActions.searchMovie(query, goPage);
+        const { query, page, searchMovieActions, loadMore } = this.props;
+
+        if(loadMore) {
+            const goPage = action === 'next' ? page + 1 : page -1;
+            searchMovieActions.setPage(goPage);
+            await searchMovieActions.searchMovie(query, goPage);
+        }
     }
 
     // 모달 열기
@@ -31,8 +44,28 @@ class SearchResultContainer extends Component {
         });
     }
 
+    componentDidMount() {
+        $(window).scroll(() => {
+            // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
+            if ($(document).height() - $(window).height() - $(window).scrollTop() < 10) {
+                if(!this.state.loadingState) {
+                    this.doPaging('next');
+                    this.setState({
+                        loadingState: true
+                    });
+                }
+            } else {
+                if(this.state.loadingState){
+                    this.setState({
+                        loadingState: false
+                    });
+                }
+            }
+        });
+    }
+
     render() {
-        const { items, query, loadingStatus, page, totalCnt, modal } = this.props;
+        const { items, query, loadingStatus, page, totalCnt, modal, loadMore } = this.props;
         const infoLoadingStatus = modal.toJS().loadingStatus;
         const { handleOpen, doPaging } = this;
 
@@ -58,6 +91,7 @@ export default connect(
         page: state.searchMovie.page,
         loadingStatus: state.searchMovie.loadingStatus,
         totalCnt: state.searchMovie.totalCnt,
+        loadMore: state.searchMovie.loadMore,
         modal: state.modalMovie
     }),
     (dispatch) => ({

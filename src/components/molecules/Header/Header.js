@@ -14,7 +14,7 @@ const Header = ({searchMovie, handleSelect, activeMenu}) => {
         // console.log(e.charCode);
 
         if(e.charCode === 13) {
-            searchMovie(e.target.value);
+            searchMovie(e.target.value, 1);
         }
     };
 

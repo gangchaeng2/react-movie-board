@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import $ from 'jquery';
 
 import * as searchMovieActions from '../modules/searchMovie';
 import * as viewSelectorActions from '../modules/viewSelector';
@@ -9,14 +10,15 @@ import Header from '../components/molecules/Header/Header';
 
 class HeaderContainer extends Component {
     searchMovie = async (query, page) => {
+        $(window).scrollTop(0);
         const { searchMovieActions } = this.props;
         const { viewSelectorActions } = this.props;
 
         viewSelectorActions.setView('search');
-        searchMovieActions.setQuery(query, 1);
+        searchMovieActions.setQuery(query);
 
         try {
-            await searchMovieActions.searchMovie(query);
+            await searchMovieActions.searchMovie(query, page);
         } catch(e) {
             console.log(e);
         }

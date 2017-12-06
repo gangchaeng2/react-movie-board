@@ -98,6 +98,9 @@ export default handleActions({
             cateMovies = cateMovies[0].cards;
             // menu = category;
             break;
+        case 'popularKoreaMoiveMore':
+            cateMovies = cateMovieUtils.getTestMore();
+            cateMovies = cateMovies[0].cards;
         default:
             break;
       }

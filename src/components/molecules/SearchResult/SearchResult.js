@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     margin: 0 auto;
 `;
 
-const PrintMovieList = ({ movieList, handleOpen, query }) => {
+const PrintMovieList = ({ movieList, handleOpen, query, totalCnt }) => {
     if(!utils.isEmpty(movieList)) {
         const movieInfoList = movieList.map((movie, i) => {
             const { code,
@@ -48,6 +48,7 @@ const PrintMovieList = ({ movieList, handleOpen, query }) => {
 
         return (
             <div>
+              입력하신 {query}에 대한 검색결과 {totalCnt}건 입니다.
               <Card.Group itemsPerRow={5}>
                 {movieInfoList}
               </Card.Group>
@@ -76,29 +77,14 @@ const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, p
         />
         <Grid centered={true}>
           <Grid.Row centered={true}>
-            {page > 1 &&
-              <Grid.Column width={1}>
-                <Button icon onClick={() => doPaging('prev')} className='page-btn'>
-                    <Icon name='chevron left' size='huge'/>
-                </Button>
-              </Grid.Column>
-            }
-
             <Grid.Column width={13}>
               <PrintMovieList
                   movieList={movieList}
                   handleOpen={handleOpen}
                   query={query}
+                  totalCnt={totalCnt}
               />
             </Grid.Column>
-
-            {totalCnt > 10 &&
-              <Grid.Column width={1}>
-                <Button icon onClick={() => doPaging('next')} className='page-btn'>
-                    <Icon name='chevron right' size='huge'/>
-                </Button>
-              </Grid.Column>
-            }
           </Grid.Row>
         </Grid>
       </Wrapper>

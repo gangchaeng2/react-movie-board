@@ -1,7 +1,8 @@
 import { createAction, handleActions } from 'redux-actions';
 import { pender } from 'redux-pender';
-
 import axios from 'axios';
+
+import * as utils from '../lib/utils';
 
 function searchMovieListByQuery(query, page) {
     return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=10&page=${page}`);
@@ -24,14 +25,15 @@ const initialState = {
     query: '',
     page: 1,
     loadingStatus: false,
-    totalCnt: 0
+    totalCnt: 0,
+    loadMore: false
 }
 
 export default handleActions({
     [SET_QUERY]: (state, action) => {
         return {
             query: action.payload,
-            page: state.page,
+            page: 1,
             loadingStatus: true,
             totalCnt: state.totalCnt
         }
@@ -42,6 +44,7 @@ export default handleActions({
             page: action.payload,
             loadingStatus: true,
             totalCnt: state.totalCnt,
+            items: state.items
         }
     },
     ...pender({
@@ -51,21 +54,23 @@ export default handleActions({
             onPending: (state, action) => state,
             onFailure: (state, action) => state
         */
-        onPending: (state, action) => {
-            return {
-                query: state.query,
-                page: state.page,
-                loadingStatus: true,
-                totalCnt: state.totalCnt
-            }
-        },
         onSuccess: (state, action) => { // 성공했을때 해야 할 작업이 따로 없으면 이 함수 또한 생략해도 됩니다.
+            let movieList = [];
+            const loadMore = action.payload.data.load_more;
+
+            if(!utils.isEmpty(state.items)) {
+                movieList = state.items.concat(action.payload.data.cards[0].items);
+            } else {
+                movieList = action.payload.data.cards[0].items;
+            }
+
             return {
-                items: action.payload.data.cards[0].items,
+                items: movieList,
                 page: state.page,
                 query: state.query,
                 loadingStatus: false,
-                totalCnt: action.payload.data.total
+                totalCnt: action.payload.data.total,
+                loadMore: loadMore
             }
         },
         onFailure: (state, action) => {

@@ -98,7 +98,7 @@ const BoxOfficeItem = ({ title, poster, releaseDay, code, handleOpen }) => {
         <Feed.Content>
           <Feed.Date content={`${releaseDay} 개봉`} />
           <Feed.Summary>
-            {title}<br/>
+            {title}
           </Feed.Summary>
         </Feed.Content>
       </Feed.Event>

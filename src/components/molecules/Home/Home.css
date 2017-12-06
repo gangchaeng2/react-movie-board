@@ -7,32 +7,32 @@ div.carousel .slide {
 }
 div.home-carousel .carousel.carousel-slider .control-arrow {
     background-color: black;
-    top: 35px;
-    max-height: 92.5%
+    top: 9%;
+    max-height: 89%
 }
 div.carousel.carousel-slider {
     margin-bottom: 2rem;
 }
 .carousel .slide img {
-    max-height:350px;
+    max-height: 350px;
     max-width: 100%;
 }
 
 .ui.five.cards.home-card {
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 23px;
+    margin-left: 5px;
+    margin-right: auto;
+    margin-top: 4%;
     margin-bottom: 1px;
 }
 .ui.header.menu-title {
   margin-left: 3rem;
   margin-bottom: 1rem;
 }
-
-.ui.feed>.event>.content {
-    font-size: 12px;
-    margin-top: 5px;
-}
-.ui.feed>.event>.label {
+div.boxoffice-feed>.event {
     width: -2.5rem;
+    font-size: 12px;
+    font-weight: 700;
+}
+div.ui.feed.boxoffice-feed>.event>.label+.content {
+    margin: 0.5% 0 .35714286em 1.14285714em
 }

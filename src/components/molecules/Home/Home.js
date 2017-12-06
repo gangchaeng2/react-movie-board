@@ -4,9 +4,8 @@ import { Carousel } from 'react-responsive-carousel';
 
 import * as utils from '../../../lib/utils';
 
-import './Home.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
+import './Home.css';
 
 const PrintRankList = ({ boxOfficeList }) => {
     const movieList = boxOfficeList.map((movie, i) => {
@@ -16,7 +15,7 @@ const PrintRankList = ({ boxOfficeList }) => {
           <Feed.Event as='a' key={i}>
             <Feed.Label content={i+1} />
             <Feed.Content>
-              <Feed.Summary className='boxoffice-summary'>
+              <Feed.Summary>
                 {title}
               </Feed.Summary>
             </Feed.Content>
@@ -33,7 +32,7 @@ const PrintRankList = ({ boxOfficeList }) => {
               </h4>
             </Card.Content>
             <Card.Content>
-              <Feed>
+              <Feed className='boxoffice-feed'>
                   {movieList}
               </Feed>
             </Card.Content>
