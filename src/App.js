@@ -4,13 +4,13 @@ import { Helmet } from 'react-helmet';
 import StickyHeader from 'react-sticky-header';
 
 import Container from './components/templates/Container';
-
 import HomeContainer from './containers/HomeContainer';
 import SearchResultContainer from './containers/SearchResultContainer';
 import ModalContainer from './containers/ModalContainer';
 import BoxOfficeContainer from './containers/BoxOfficeContainer';
 import CategoryContainer from './containers/CategoryContainer';
 import HeaderContainer from './containers/HeaderContainer';
+import Footer from './components/molecules/Footer/Footer';
 
 import 'react-sticky-header/styles.css';
 import styled from 'styled-components';
@@ -51,6 +51,7 @@ class App extends Component {
                   </Container>
               </Wrapper>
               <ModalContainer />
+              <Footer />
             </div>
         );
     }

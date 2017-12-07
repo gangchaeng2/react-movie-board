@@ -61,7 +61,7 @@ const PrintMovieList = ({ movieList, handleOpen, query, totalCnt }) => {
     }
 }
 
-const SearchResult = ({ movieList, handleOpen, query, loadingStatus, doPaging, totalCnt, infoLoadingStatus }) => {
+const SearchResult = ({ movieList, handleOpen, query, loadingStatus, totalCnt, infoLoadingStatus }) => {
   return (
     <div>
       <Wrapper>

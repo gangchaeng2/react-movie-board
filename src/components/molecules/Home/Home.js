@@ -4,15 +4,16 @@ import { Carousel } from 'react-responsive-carousel';
 
 import * as utils from '../../../lib/utils';
 
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Home.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const PrintRankList = ({ boxOfficeList }) => {
-    const movieList = boxOfficeList.map((movie, i) => {
+const PrintRankList = ({ boxOfficeList, handleOpen }) => {
+    const top20BoxOfficeList = boxOfficeList.slice(0,20);
+    const movieList = top20BoxOfficeList.map((movie, i) => {
         const { code, title } = movie.items[0].item;
 
         return (
-          <Feed.Event as='a' key={i}>
+          <Feed.Event as='a' key={i} onClick={() => handleOpen(title, code)}>
             <Feed.Label content={i+1} />
             <Feed.Content>
               <Feed.Summary>
@@ -41,7 +42,7 @@ const PrintRankList = ({ boxOfficeList }) => {
     );
 }
 
-const MovieCard = ({ movieList, handleOpen, gubun }) => {
+const MovieCard = ({ movieList, handleOpen }) => {
     const movieInfo = movieList.map((movie, i) => {
         const { code, title, poster, watcha_rating } = movie.items[0].item;
         const rating = utils.getRating(watcha_rating);
@@ -62,7 +63,7 @@ const MovieCard = ({ movieList, handleOpen, gubun }) => {
     );
 };
 
-const PrintMoiveList = ({ movieList, handleOpen, gubun }) => {
+const PrintMoiveList = ({ movieList, handleOpen }) => {
     const movieList_1 = movieList.slice(0,10);
     const movieList_2 = movieList.slice(10,20);
 
@@ -71,12 +72,10 @@ const PrintMoiveList = ({ movieList, handleOpen, gubun }) => {
             <MovieCard
                 movieList={movieList_1}
                 handleOpen={handleOpen}
-                gubun={gubun}
             />
             <MovieCard
                 movieList={movieList_2}
                 handleOpen={handleOpen}
-                gubun={gubun}
             />
         </Carousel>
     );
@@ -84,7 +83,7 @@ const PrintMoiveList = ({ movieList, handleOpen, gubun }) => {
 
 const PrintCategoryMovieMenu = ({ menu, getCateMovieList, handleOpen, showAllCategory }) => {
     return(
-      <Menu pointing vertical>
+      <Menu pointing vertical className='category-menu'>
         <Menu.Item name='국내 누적관객수 TOP 영화'    active={menu === 'popularKoreaMoive'}     onClick={() => getCateMovieList('popularKoreaMoive')}/>
         <Menu.Item name='전세계 흥행 TOP 영화'        active={menu === 'popularWordMoive'}      onClick={() => getCateMovieList('popularWordMoive')}/>
         <Menu.Item name='역대 100만 관객돌파 영화'    active={menu === 'millionMoive'}          onClick={() => getCateMovieList('millionMoive')}/>
@@ -93,7 +92,11 @@ const PrintCategoryMovieMenu = ({ menu, getCateMovieList, handleOpen, showAllCat
         <Menu.Item name='느와르 영화'                active={menu === 'noirMoive'}             onClick={() => getCateMovieList('noirMoive')}/>
         <Menu.Item name='스포츠 영화'                active={menu === 'sportsMoive'}           onClick={() => getCateMovieList('sportsMoive')}/>
         <Menu.Item name='애니메이션 영화'            active={menu === 'animationMoive'}        onClick={() => getCateMovieList('animationMoive')}/>
-        <Menu.Item name='카테고리 모두보기'          onClick={() => showAllCategory()}/>
+        <Menu.Item name='슈퍼 히어로 영화'           active={menu === 'superHeroMovie'}        onClick={() => getCateMovieList('superHeroMovie')}/>
+        <Menu.Item name='코미디 영화'               active={menu === 'comedyMoive'}            onClick={() => getCateMovieList('comedyMoive')}/>
+        <Menu.Item name='스릴러 영화'               active={menu === 'thrillerMovie'}          onClick={() => getCateMovieList('thrillerMovie')}/>
+        <Menu.Item name='범죄 영화'                active={menu === 'criminalMoive'}           onClick={() => getCateMovieList('criminalMoive')}/>
+        <Menu.Item className='all-category' name='카테고리 모두보기'          onClick={() => showAllCategory()}/>
       </Menu>
     );
 }
@@ -107,9 +110,9 @@ const Home = ({ boxOfficeList, cateMovieList, menu, getCateMovieList, handleOpen
           page={true}
         />
         <Grid>
-          <Header>오늘의 박스 오피스</Header>
           <Grid.Row columns={2} verticalAlign='middle'>
             <Grid.Column width={3}>
+              <Header>오늘의 박스 오피스</Header>
               <PrintRankList
                   boxOfficeList={boxOfficeList}
                   handleOpen={handleOpen}
@@ -120,14 +123,13 @@ const Home = ({ boxOfficeList, cateMovieList, menu, getCateMovieList, handleOpen
               <PrintMoiveList
                   movieList={boxOfficeList}
                   handleOpen={handleOpen}
-                  gubun='boxOffice'
               />
             </Grid.Column>
           </Grid.Row>
 
-          <Header>카테고리 영화 찾기</Header>
-          <Grid.Row columns={2} verticalAlign='middle'>
+          <Grid.Row columns={2}>
             <Grid.Column width={3}>
+              <Header className='category-header'>카테고리 영화 찾기</Header>
               <PrintCategoryMovieMenu
                   menu={menu}
                   getCateMovieList={getCateMovieList}
@@ -139,7 +141,6 @@ const Home = ({ boxOfficeList, cateMovieList, menu, getCateMovieList, handleOpen
                 <PrintMoiveList
                     movieList={cateMovieList}
                     handleOpen={handleOpen}
-                    gubun='category'
                 />
             </Grid.Column>
           </Grid.Row>

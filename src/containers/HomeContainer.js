@@ -21,17 +21,19 @@ class HomeContainer extends Component {
         });
     }
 
-    getCateMovieList = (category) => {
+    getCateMovieList = (category, page) => {
         if(category === undefined || category === '') {
            category = 'popularKoreaMoive';
         }
+        page = 2;
         const { categoryMovieActions } = this.props;
-        categoryMovieActions.getCategoryMovie(category);
+        categoryMovieActions.getCategoryMovie({category, page});
     }
 
     getBoxOfficeList = () => {
         const { boxOfficeMovieActions } = this.props;
-        boxOfficeMovieActions.getBoxOffice();
+        boxOfficeMovieActions.getBoxOfficeHome();
+        // boxOfficeMovieActions.getBoxOffice(10);
     }
 
     showAllCategory = () => {
@@ -41,6 +43,7 @@ class HomeContainer extends Component {
     }
 
     componentDidMount() {
+        $(window).unbind();
         this.getBoxOfficeList();
         this.getCateMovieList();
     }

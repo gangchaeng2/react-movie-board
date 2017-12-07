@@ -109,7 +109,8 @@ const BoxOfficeItem = ({ title, poster, releaseDay, code, handleOpen }) => {
 }
 
 const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
-    const movieList = boxOfficeList.map((movie, i) => {
+    const top10List = boxOfficeList.slice(0, 10);
+    const movieList = top10List.map((movie, i) => {
         const { code, title, poster, d_day } = movie.items[0].item;
         const releaseDay = utils.getOpenDate(d_day);
 

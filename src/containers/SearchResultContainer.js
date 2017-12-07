@@ -17,11 +17,11 @@ class SearchResultContainer extends Component {
         };
     }
 
-    doPaging = async (action) => {
+    doPaging = async () => {
         const { query, page, searchMovieActions, loadMore } = this.props;
 
         if(loadMore) {
-            const goPage = action === 'next' ? page + 1 : page -1;
+            const goPage = page + 1;
             searchMovieActions.setPage(goPage);
             await searchMovieActions.searchMovie(query, goPage);
         }
@@ -44,11 +44,12 @@ class SearchResultContainer extends Component {
     }
 
     componentDidMount() {
+        $(window).unbind();
         $(window).scroll(() => {
             // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
-            if ($(document).height() - $(window).height() - $(window).scrollTop() < 10) {
+            if($(document).height() - $(window).height() - $(window).scrollTop() < 2) {
                 if(!this.state.loadingState) {
-                    this.doPaging('next');
+                    this.doPaging();
                     this.setState({
                         loadingState: true
                     });
@@ -63,10 +64,15 @@ class SearchResultContainer extends Component {
         });
     }
 
+    componentWillUnMount() {
+        // REMOVE WINDOWS SCROLL LISTENER
+        $(window).unbind();
+    }
+
     render() {
         const { items, query, loadingStatus, totalCnt, modal } = this.props;
         const infoLoadingStatus = modal.toJS().loadingStatus;
-        const { handleOpen, doPaging } = this;
+        const { handleOpen } = this;
 
         return (
             <SearchResult
@@ -74,7 +80,6 @@ class SearchResultContainer extends Component {
                 handleOpen={handleOpen}
                 query={query}
                 loadingStatus={loadingStatus}
-                doPaging={doPaging}
                 totalCnt={totalCnt}
                 infoLoadingStatus={infoLoadingStatus}
             />

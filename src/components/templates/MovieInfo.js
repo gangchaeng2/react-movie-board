@@ -1,15 +1,6 @@
 import React from 'react';
-import { Card, Image, Label } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import * as utils from '../../lib/utils';
-
-const showLabel = (data) => {
-    let show = data;
-    if(!utils.isEmpty(show)) {
-      return (
-        <Label>{show}</Label>
-      );
-    }
-}
 
 const MovieInfo = ({code, title, title_url
     , filmrate, poster, main_genre
@@ -27,13 +18,8 @@ const MovieInfo = ({code, title, title_url
         {gubun !== 'simillarMoive' &&
             <Card.Content>
               <Card.Header>
-                {title}
+                {releasDay} 개봉
               </Card.Header>
-              <Card.Meta>
-                <span className='date'>
-                  {releasDay} 개봉
-                </span>
-              </Card.Meta>
             </Card.Content>
         }
       </Card>

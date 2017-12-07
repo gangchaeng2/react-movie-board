@@ -53,6 +53,7 @@ export function getPeopleList(peoples) {
     return peopleInfo;
 }
 
+// meida 정보에서 stillcut만 로드
 export function getStillCutList(media) {
     let list = [];
 
@@ -64,6 +65,7 @@ export function getStillCutList(media) {
     return list;
 }
 
+// comment, stroy 자르기
 export function cutStory(story, gubun) {
     let cutStroy = '';
     let cutSize = 300;
@@ -94,6 +96,7 @@ export function cutStory(story, gubun) {
     return cutStroy;
 }
 
+// 별 개수
 export function getRating(rating) {
     let newRating = '';
 
@@ -121,6 +124,7 @@ export function getRating(rating) {
       return newRating;
 }
 
+// 예매율 반올림
 export function getReservation(reservation) {
     let newReservation = 0;
 

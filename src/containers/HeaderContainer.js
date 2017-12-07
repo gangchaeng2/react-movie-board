@@ -25,6 +25,7 @@ class HeaderContainer extends Component {
     }
 
     handleSelect = (name) => {
+        $(window).scrollTop(0);
         const view = name;
         const { viewSelectorActions } = this.props;
         viewSelectorActions.setView(view);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import $ from 'jquery';
 
 import * as modalMovieActions from '../modules/modalMovie';
 import * as categoryMovieActions from '../modules/categoryMovie';
@@ -8,6 +9,13 @@ import * as categoryMovieActions from '../modules/categoryMovie';
 import CategoryMoiveList from '../components/molecules/CategoryMovieList/CategoryMovieList';
 
 class CategoryContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loadingState: false
+        };
+    }
     // 모달 열기
     handleOpen = async (title, code) => {
         const { modalMovieActions } = this.props;
@@ -17,17 +25,52 @@ class CategoryContainer extends Component {
         });
     }
 
-    getCateMovieList = (category) => {
+    getCateMovieList = (category, page) => {
         if(category === undefined || category === '') {
            category = 'popularKoreaMoive';
         }
+        page = 1;
         const { categoryMovieActions } = this.props;
-        categoryMovieActions.getCategoryMovie(category);
+        categoryMovieActions.getCategoryMovie({category, page});
+    }
+
+    doPaging = () => {
+        let { menu, page, categoryMovieActions } = this.props;
+        let category = menu;
+
+        if(page < 6) {
+            page = page + 1;
+        } else {
+            return;
+        }
+
+        categoryMovieActions.getCategoryMovie({category, page});
     }
 
     componentDidMount() {
-        const { menu } = this.props;
-        this.getCateMovieList(menu);
+        $(window).unbind();
+        $(window).scroll(() => {
+            // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
+            if($(document).height() - $(window).height() - $(window).scrollTop() < 2) {
+                if(!this.state.loadingState) {
+                    this.doPaging();
+                    this.setState({
+                        loadingState: true
+                    });
+                }
+            } else {
+                if(this.state.loadingState){
+                    this.setState({
+                        loadingState: false
+                    });
+                }
+            }
+        });
+    }
+
+    componentWillUnMount() {
+        // REMOVE WINDOWS SCROLL LISTENER
+        $(window).unbind();
     }
 
     render() {
@@ -53,6 +96,7 @@ export default connect(
     (state) => ({
         cateMovieList: state.categoryMovie.cateMovies,
         menu: state.categoryMovie.menu,
+        page: state.categoryMovie.page,
         modal: state.modalMovie
     }),
     (dispatch) => ({

@@ -135,23 +135,8 @@ class MovieDetail extends Component {
 
     PrintMovieInfo = ({ movieInfo, similarMovies, open, handleHide, handleOpen }) => {
         const {
-          title,
-          title_eng,
-          poster,
-          audience_count,
-          main_genre,
-          running_time_str,
-          nation,
-          story,
-          directors,
-          actors,
-          filmrate,
-          youtube_id,
-          stillcut,
-          d_day,
-          watcha_rating,
-          eval_count,
-          media
+          title, title_eng, poster, audience_count, main_genre, running_time_str, nation, story, directors, actors,
+          filmrate, youtube_id, stillcut, d_day, watcha_rating, eval_count, media
         } = movieInfo;
 
         const { PlayTrailer, SimilarMovieList, PeopleInfo } = this;
@@ -185,7 +170,6 @@ class MovieDetail extends Component {
                     </Grid.Column>
                   </Grid.Row>
 
-
                   <Grid.Row className='info-row' centered>
                     <Grid.Column width={12}>
                       <Segment>
@@ -217,12 +201,14 @@ class MovieDetail extends Component {
                         </Item.Group>
                       </Segment>
 
-                      <Segment>
-                        <SimilarMovieList
-                            similarMovies={similarMovies}
-                            handleOpen={handleOpen}
-                        />
-                    </Segment>
+                      {!utils.isEmpty(similarMovies) &&
+                        <Segment>
+                          <SimilarMovieList
+                              similarMovies={similarMovies}
+                              handleOpen={handleOpen}
+                          />
+                        </Segment>
+                      }
                     </Grid.Column>
 
                     <Grid.Column width={4}>

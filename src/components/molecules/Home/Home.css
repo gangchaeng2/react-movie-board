@@ -46,3 +46,16 @@ div.ui.feed.boxoffice-feed>.event:hover {
 div.ui.feed.boxoffice-feed>.event>.content .summary:hover {
     color:red;
 }
+
+div.ui.header.category-header {
+    margin-top: 8%;
+}
+
+div.ui.pointing.vertical.category-menu.menu .item {
+    font-weight: bold;
+    padding-top: 7%;
+}
+div.ui.pointing.vertical.category-menu.menu .item.all-category {
+    color: red;
+    text-align: center;
+}

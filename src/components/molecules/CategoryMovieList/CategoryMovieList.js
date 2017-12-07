@@ -6,7 +6,7 @@ import PrintCateMovieList from './PrintCateMovieList';
 const CategoryMenu = ({ getCateMovieList, menu }) => {
     return (
       <Grid.Column width={3}>
-        <Menu pointing vertical>
+        <Menu pointing vertical className='category-menu'>
           <Menu.Item name='국내 누적관객수 TOP 영화'    active={menu === 'popularKoreaMoive'}     onClick={() => getCateMovieList('popularKoreaMoive')}/>
           <Menu.Item name='전세계 흥행 TOP 영화'        active={menu === 'popularWordMoive'}      onClick={() => getCateMovieList('popularWordMoive')}/>
           <Menu.Item name='역대 100만 관객돌파 영화'    active={menu === 'millionMoive'}          onClick={() => getCateMovieList('millionMoive')}/>
