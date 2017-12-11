@@ -3,6 +3,7 @@ import { createAction, handleActions } from 'redux-actions';
 import * as cateMovieUtils from '../lib/movieJson/CateMovieList';
 import * as cateMovieUtils2 from '../lib/movieJson/CateMovieList2';
 import * as cateMovieUtils3 from '../lib/movieJson/CateMovieList3';
+import * as cateMovieUtils4 from '../lib/movieJson/CateMovieList4';
 
 const GET_CATEGORY_MOVIE = 'GET_CATEGORY_MOVIE';
 
@@ -37,17 +38,17 @@ export default handleActions({
             // menu = category;
             break;
         case 'highRatingMovie':
-            cateMovies = cateMovieUtils2.getHigherRatingMovieList();
+            cateMovies = cateMovieUtils4.getHigherRatingMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'millionMoive':
-            cateMovies = cateMovieUtils2.getMillionMovieList();
+            cateMovies = cateMovieUtils4.getMillionMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'noirMoive':
-            cateMovies = cateMovieUtils2.getNoirMoiveList();
+            cateMovies = cateMovieUtils4.getNoirMoiveList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
