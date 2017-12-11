@@ -1,6 +1,8 @@
 import { createAction, handleActions } from 'redux-actions';
 
 import * as cateMovieUtils from '../lib/movieJson/CateMovieList';
+import * as cateMovieUtils2 from '../lib/movieJson/CateMovieList2';
+import * as cateMovieUtils3 from '../lib/movieJson/CateMovieList3';
 
 const GET_CATEGORY_MOVIE = 'GET_CATEGORY_MOVIE';
 
@@ -20,57 +22,57 @@ export default handleActions({
 
       switch(category) {
         case 'popularKoreaMoive':
-            cateMovies = cateMovieUtils.getPopularKoreaMoiveList();
+            cateMovies = cateMovieUtils2.getPopularKoreaMoiveList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'popularWordMoive':
-            cateMovies = cateMovieUtils.getPopularWorldMovieList();
+            cateMovies = cateMovieUtils2.getPopularWorldMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'expertRecommendMovie':
-            cateMovies = cateMovieUtils.getExpertRecommendMovieList();
+            cateMovies = cateMovieUtils2.getExpertRecommendMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'highRatingMovie':
-            cateMovies = cateMovieUtils.getHigherRatingMovieList();
+            cateMovies = cateMovieUtils2.getHigherRatingMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'millionMoive':
-            cateMovies = cateMovieUtils.getMillionMovieList();
+            cateMovies = cateMovieUtils2.getMillionMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'noirMoive':
-            cateMovies = cateMovieUtils.getNoirMoiveList();
+            cateMovies = cateMovieUtils2.getNoirMoiveList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'superHeroMovie':
-            cateMovies = cateMovieUtils.getSuperHeroMovieList();
+            cateMovies = cateMovieUtils3.getSuperHeroMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'comedyMoive':
-            cateMovies = cateMovieUtils.getComedyMovieList();
+            cateMovies = cateMovieUtils3.getComedyMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'sportsMoive':
-            cateMovies = cateMovieUtils.getSportsMovieList();
+            cateMovies = cateMovieUtils3.getSportsMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'thrillerMovie':
-            cateMovies = cateMovieUtils.getThrillerMovieList();
+            cateMovies = cateMovieUtils3.getThrillerMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
         case 'criminalMoive':
-            cateMovies = cateMovieUtils.getCriminalMovieList();
+            cateMovies = cateMovieUtils3.getCriminalMovieList();
             cateMovies = cateMovies[0].cards.slice(0, page * 10);
             // menu = category;
             break;
