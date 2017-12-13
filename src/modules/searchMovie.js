@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as utils from '../lib/utils';
 
 function searchMovieListByQuery(query, page) {
+    query = encodeURIComponent(query);
     return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=10&page=${page}`);
 }
 

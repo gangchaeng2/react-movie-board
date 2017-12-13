@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Map } from 'immutable';
 
 function searchMovieListByQuery(query) {
+    query = encodeURIComponent(query);
     return axios.get(`https://cors-anywhere.herokuapp.com/https://watcha.net/search/movie.json?query=${query}&per=1`);
 }
 
