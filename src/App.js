@@ -6,7 +6,7 @@ import StickyHeader from 'react-sticky-header';
 import Container from './components/templates/Container';
 import HomeContainer from './containers/HomeContainer';
 import SearchResultContainer from './containers/SearchResultContainer';
-import ModalContainer from './containers/ModalContainer';
+import MovieDetailContainer from './containers/MovieDetailContainer';
 import BoxOfficeContainer from './containers/BoxOfficeContainer';
 import CategoryContainer from './containers/CategoryContainer';
 import HeaderContainer from './containers/HeaderContainer';
@@ -50,7 +50,7 @@ class App extends Component {
                       <CategoryContainer />
                   </Container>
               </Wrapper>
-              <ModalContainer />
+              <MovieDetailContainer />
               <Footer />
             </div>
         );
