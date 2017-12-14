@@ -41,7 +41,7 @@ export function getPeopleList(peoples) {
     let peopleInfo = '';
 
     if(!isEmpty(peoples) || peoples !== undefined) {
-        peoples.map((people, i) => {
+        peoples.forEach((people, i) => {
             if(i === 0) {
                 peopleInfo += `${people.name}`;
             } else {
