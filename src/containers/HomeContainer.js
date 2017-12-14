@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import $ from 'jquery';
 
 import * as boxOfficeMovieActions from '../modules/boxOffice';
-import * as modalMovieActions from '../modules/modalMovie';
+import * as movieDetailActions from '../modules/movieDetail';
 import * as categoryMovieActions from '../modules/categoryMovie';
 import * as viewSelectorActions from '../modules/viewSelector';
 
@@ -13,11 +13,11 @@ import Home from '../components/molecules/Home/Home';
 class HomeContainer extends Component {
     // Open Modal
     handleOpen = async (title, code) => {
-        const { modalMovieActions } = this.props;
+        const { movieDetailActions } = this.props;
 
-        await modalMovieActions.searchMovieTmp(title)
+        await movieDetailActions.searchMovieTmp(title)
         .then(function(res) {
-            modalMovieActions.getSimilarMovieList(code);
+            movieDetailActions.getSimilarMovieList(code);
         });
     }
 
@@ -44,6 +44,14 @@ class HomeContainer extends Component {
 
     componentDidMount() {
         $(window).unbind();
+        $( window ).scroll( function() {
+            console.log($( window ).scrollTop());
+          if ( $( window ).scrollTop() > 500 ) {
+            $( '.footer-main' ).fadeIn();
+          } else {
+            $( '.footer-main' ).fadeOut();
+          }
+        } );;
         this.getBoxOfficeList();
         this.getCateMovieList();
     }
@@ -72,11 +80,11 @@ export default connect(
         boxOfficeList: state.boxOffice.boxOfficeListHome,
         cateMovieList: state.categoryMovie.cateMovies,
         menu: state.categoryMovie.menu,
-        modal: state.modalMovie
+        modal: state.movieDetail
     }),
     (dispatch) => ({
         categoryMovieActions: bindActionCreators(categoryMovieActions, dispatch),
-        modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
+        movieDetailActions: bindActionCreators(movieDetailActions, dispatch),
         boxOfficeMovieActions: bindActionCreators(boxOfficeMovieActions, dispatch),
         viewSelectorActions: bindActionCreators(viewSelectorActions, dispatch)
     })

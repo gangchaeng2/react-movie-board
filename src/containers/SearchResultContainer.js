@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import $ from 'jquery';
 
-import * as modalMovieActions from '../modules/modalMovie';
+import * as movieDetailActions from '../modules/movieDetail';
 import * as searchMovieActions from '../modules/searchMovie';
 
 import SearchResult from '../components/molecules/SearchResult/SearchResult';
@@ -29,8 +29,8 @@ class SearchResultContainer extends Component {
 
     // 모달 열기
     handleOpen = async (title, code) => {
-        const { items, modalMovieActions } = this.props;
-        modalMovieActions.getSimilarMovieList(code);
+        const { items, movieDetailActions } = this.props;
+        movieDetailActions.getSimilarMovieList(code);
         // 검색결과 중 코드값이 일치하는 것을 찾는다.
         const movieDetail = items.filter(function(movies){
             return movies.item.code === code;
@@ -38,7 +38,7 @@ class SearchResultContainer extends Component {
         const movieInfo = movieDetail[0].item;
 
         // modal 세팅
-        modalMovieActions.show({
+        movieDetailActions.show({
             item: movieInfo
         });
     }
@@ -47,7 +47,8 @@ class SearchResultContainer extends Component {
         $(window).unbind();
         $(window).scroll(() => {
             // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
-            if($(document).height() - $(window).height() - $(window).scrollTop() < 2) {
+            if($(document).height() - $(window).height() - $(window).scrollTop() < 20) {
+                $( '.footer-main' ).fadeIn();
                 if(!this.state.loadingState) {
                     this.doPaging();
                     this.setState({
@@ -60,6 +61,9 @@ class SearchResultContainer extends Component {
                         loadingState: false
                     });
                 }
+            }
+            if($(window).scrollTop() === 0) {
+                $( '.footer-main' ).fadeOut();
             }
         });
     }
@@ -95,10 +99,10 @@ export default connect(
         loadingStatus: state.searchMovie.loadingStatus,
         totalCnt: state.searchMovie.totalCnt,
         loadMore: state.searchMovie.loadMore,
-        modal: state.modalMovie
+        modal: state.movieDetail
     }),
     (dispatch) => ({
-        modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
+        movieDetailActions: bindActionCreators(movieDetailActions, dispatch),
         searchMovieActions: bindActionCreators(searchMovieActions, dispatch)
     })
 )(SearchResultContainer);

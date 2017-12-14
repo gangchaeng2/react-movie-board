@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import $ from 'jquery';
 
-import * as modalMovieActions from '../modules/modalMovie';
+import * as movieDetailActions from '../modules/movieDetail';
 import * as categoryMovieActions from '../modules/categoryMovie';
 
 import CategoryMoiveList from '../components/molecules/CategoryMovieList/CategoryMovieList';
@@ -18,10 +18,10 @@ class CategoryContainer extends Component {
     }
     // 모달 열기
     handleOpen = async (title, code) => {
-        const { modalMovieActions } = this.props;
+        const { movieDetailActions } = this.props;
 
-        await modalMovieActions.searchMovieTmp(title).then(function(res){
-            modalMovieActions.getSimilarMovieList(code);
+        await movieDetailActions.searchMovieTmp(title).then(function(res){
+            movieDetailActions.getSimilarMovieList(code);
         });
     }
 
@@ -51,7 +51,8 @@ class CategoryContainer extends Component {
         $(window).unbind();
         $(window).scroll(() => {
             // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
-            if($(document).height() - $(window).height() - $(window).scrollTop() < 2) {
+            if($(document).height() - $(window).height() - $(window).scrollTop() < 20) {
+                $( '.footer-main' ).fadeIn();
                 if(!this.state.loadingState) {
                     this.doPaging();
                     this.setState({
@@ -64,6 +65,9 @@ class CategoryContainer extends Component {
                         loadingState: false
                     });
                 }
+            }
+            if($(window).scrollTop() === 0) {
+                $( '.footer-main' ).fadeOut();
             }
         });
     }
@@ -97,10 +101,10 @@ export default connect(
         cateMovieList: state.categoryMovie.cateMovies,
         menu: state.categoryMovie.menu,
         page: state.categoryMovie.page,
-        modal: state.modalMovie
+        modal: state.movieDetail
     }),
     (dispatch) => ({
         categoryMovieActions: bindActionCreators(categoryMovieActions, dispatch),
-        modalMovieActions: bindActionCreators(modalMovieActions, dispatch),
+        movieDetailActions: bindActionCreators(movieDetailActions, dispatch),
     })
 )(CategoryContainer);

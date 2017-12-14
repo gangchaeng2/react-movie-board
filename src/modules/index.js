@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import searchMovie from './searchMovie';
-import modalMovie from './modalMovie';
+import movieDetail from './movieDetail';
 import viewSelector from './viewSelector';
 import boxOffice from './boxOffice';
 import categoryMovie from './categoryMovie';
@@ -9,7 +9,7 @@ import { penderReducer } from 'redux-pender';
 
 export default combineReducers({
     searchMovie,
-    modalMovie,
+    movieDetail,
     viewSelector,
     boxOffice,
     categoryMovie,

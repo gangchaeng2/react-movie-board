@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as modalMovieActions from '../modules/modalMovie';
+import * as movieDetailActions from '../modules/movieDetail';
 
 import MovieDetail from '../components/molecules/MovieDetail/MovieDetail';
 
-class ModalContainer extends Component {
+class MovieDetailContainer extends Component {
     // 모달 열기
     handleOpen = async (title, code) => {
-        const { modalMovieActions } = this.props;
-        await modalMovieActions.searchMovieTmp(title).then(function(res){
-            modalMovieActions.getSimilarMovieList(code);
+        const { movieDetailActions } = this.props;
+        await movieDetailActions.searchMovieTmp(title).then(function(res){
+            movieDetailActions.getSimilarMovieList(code);
         });
     }
 
     // 모달 닫기
     handleHide = () => {
-        const { modalMovieActions } = this.props;
-        modalMovieActions.hide();
+        const { movieDetailActions } = this.props;
+        movieDetailActions.hide();
     }
 
     render() {
@@ -43,9 +43,9 @@ class ModalContainer extends Component {
 
 export default connect(
     (state) => ({
-        modal: state.modalMovie
+        modal: state.movieDetail
     }),
     (dispatch) => ({
-        modalMovieActions: bindActionCreators(modalMovieActions, dispatch)
+        movieDetailActions: bindActionCreators(movieDetailActions, dispatch)
     })
-)(ModalContainer);
+)(MovieDetailContainer);

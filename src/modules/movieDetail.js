@@ -14,8 +14,8 @@ function getSimilarMovieByCode(code) {
 
 const SHOW = 'SHOW';
 const HIDE = 'HIDE';
-const GET_MOVIE_TMP = 'modalMovie/GET_MOVIE_TMP';
-const GET_SIMILAR_MOVIE = 'modalMovie/GET_SIMILAR_MOVIE';
+const GET_MOVIE_TMP = 'movieDetail/GET_MOVIE_TMP';
+const GET_SIMILAR_MOVIE = 'movieDetail/GET_SIMILAR_MOVIE';
 
 export const show = createAction(SHOW);
 export const hide = createAction(HIDE);
