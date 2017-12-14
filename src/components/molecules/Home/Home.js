@@ -68,7 +68,7 @@ const PrintMoiveList = ({ movieList, handleOpen }) => {
     const movieList_2 = movieList.slice(10,20);
 
     return (
-        <Carousel className='home-carousel' emulateTouch showThumbs={false} showStatus={false} showThumbs={false} showIndicators={false}>
+        <Carousel className='home-carousel' emulateTouch showThumbs={false} showStatus={false} showIndicators={false}>
             <MovieCard
                 movieList={movieList_1}
                 handleOpen={handleOpen}
