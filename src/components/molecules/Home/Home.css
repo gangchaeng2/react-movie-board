@@ -33,16 +33,18 @@ div.carousel.carousel-slider {
 }
 div.boxoffice-feed>.event {
     width: -2.5rem;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
 }
 div.ui.feed.boxoffice-feed>.event>.label+.content {
     margin: 0.5% 0 .35714286em 1.14285714em
 }
-div.ui.feed.boxoffice-feed>.event:hover {
-    color: red;
+div.ui.feed.boxoffice-feed>.event>.content .summary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 10rem;
 }
-
 div.ui.feed.boxoffice-feed>.event>.content .summary:hover {
     color:red;
 }

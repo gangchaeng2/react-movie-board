@@ -3,9 +3,7 @@ import { Header, Card, Image, Feed, Grid, Menu, Dimmer, Loader } from 'semantic-
 import { Carousel } from 'react-responsive-carousel';
 
 import * as utils from '../../../lib/utils';
-
 import './Home.css';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const PrintRankList = ({ boxOfficeList, handleOpen }) => {
     const top20BoxOfficeList = boxOfficeList.slice(0,20);
@@ -16,7 +14,7 @@ const PrintRankList = ({ boxOfficeList, handleOpen }) => {
           <Feed.Event as='a' key={i} onClick={() => handleOpen(title, code)}>
             <Feed.Label content={i+1} />
             <Feed.Content>
-              <Feed.Summary>
+              <Feed.Summary title={title}>
                 {title}
               </Feed.Summary>
             </Feed.Content>
