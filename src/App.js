@@ -4,15 +4,11 @@ import { Helmet } from 'react-helmet';
 import StickyHeader from 'react-sticky-header';
 
 import Container from './components/templates/Container';
-import HomeContainer from './containers/HomeContainer';
-import SearchResultContainer from './containers/SearchResultContainer';
-import MovieDetailContainer from './containers/MovieDetailContainer';
-import BoxOfficeContainer from './containers/BoxOfficeContainer';
-import CategoryContainer from './containers/CategoryContainer';
-import HeaderContainer from './containers/HeaderContainer';
+import { HeaderContainer, HomeContainer, SearchResultContainer, CategoryContainer, BoxOfficeContainer, MovieDetailContainer }  from './containers';
 import Footer from './components/molecules/Footer/Footer';
 
 import 'react-sticky-header/styles.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
