@@ -96,7 +96,7 @@ const PrintBoxOfficeDetail = ({boxOfficeList, handleOpen}) => {
 
 const BoxOfficeItem = ({ title, poster, releaseDay, code, handleOpen }) => {
     return (
-      <Feed.Event as='a' onClick={() => handleOpen(title, code)}>
+      <Feed.Event as='a' onClick={() => handleOpen(title, code)} title={title}>
         <Feed.Label image={`${poster.small}`} />
         <Feed.Content>
           <Feed.Date content={`${releaseDay} 개봉`} />
@@ -110,12 +110,13 @@ const BoxOfficeItem = ({ title, poster, releaseDay, code, handleOpen }) => {
 
 const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
     const top10List = boxOfficeList.slice(0, 10);
+
     const movieList = top10List.map((movie, i) => {
         const { code, title, poster, d_day } = movie.items[0].item;
         const releaseDay = utils.getOpenDate(d_day);
 
         return (
-            <Feed key={i}>
+            <Feed className='boxoffice-feed2' key={i}>
                 <BoxOfficeItem
                     code={code}
                     title={title}
@@ -136,9 +137,7 @@ const PrintBoxOfficeList = ({ boxOfficeList, handleOpen }) => {
               </Card.Header>
             </Card.Content>
             <Card.Content>
-              <Feed>
-                  {movieList}
-              </Feed>
+                {movieList}
             </Card.Content>
           </Card>
       </Grid.Column>

@@ -5,3 +5,18 @@ div.ui.items>.item .extra>* {
 .ui.label, .ui.labels .label {
     color: white;
 }
+
+div.ui.feed.boxoffice-feed2>.event>.content .summary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 10rem;
+}
+
+div.ui.feed.boxoffice-feed2>.event>.content .summary:hover {
+    color: red;
+}
+
+div.boxOffice-carousel .carousel.carousel-slider .control-arrow {
+    background-color: black;
+}
